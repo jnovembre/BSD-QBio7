@@ -8,42 +8,39 @@ output:
 author:
   name: Peter Carbonetto
   affiliation: University of Chicago
-date: August 10, 2020
+date: July 30, 2021
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
 spacing: single
 graphics: yes
 endnote: no
-thanks: "This document is included as part of the Data Visualization tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2020. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer, Stefano Allesina and Matthew Stephens for their guidance."
+thanks: "This document is included as part of the Data Visualization tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer, Stefano Allesina and Matthew Stephens for their guidance."
 abstract: "In this lesson, you will use ggplot2 to create effective
-  visualizations of data. The ggplot2 package is a powerful plotting
-  interface that extends the base plotting functions in R. You will
-  learn that creating effective visualizations hinges on good data
-  preparation. (In reality, good data preparation can take
-  days or weeks, but we can still illustrate some useful data
-  preparation practices.) The main difference with Advanced Computing
-  1 is that we take a more in-depth look at ggplot2 and plotting
-  strategies."
+  data visualizations. The ggplot2 package is a powerful plotting
+  interface that extends the base plotting functions in R. The main
+  difference with Advanced Computing 1 is that we take a more in-depth
+  look at ggplot2 and plotting strategies."
 ---
 
 Motivation
 ==========
 
-Why plot? One reason: to gain insight into your data. This is
-"exploratory data visualization." Another reason: to tell a story
-(e.g., for a scientific paper). Both require iteration and refinement
-to get right. So you need to learn to create plots efficiently.
+*Why plot?* One reason is to gain insights from your data, what we
+sometimes call "exploratory data visualization." Another reason is to
+tell a story (say, in a research paper). Both will involve iteration
+and refinement.
 
-For this reason, we recommend the *programmatic approach* to data
-visualization. This will allow you to:
+For these reasons, the *programmatic approach* is a powerful aapproach
+data visualization. This will allow you to:
 
 1. Create an endless variety of plots.
 
 2. Reuse code to quickly create and revise plots.
 
-**ggplot2** is the the most powerful—and increasingly popular—approach
-to creating plots in R.
+In this tutorial we will explore the programmatic approach to plotting
+using **ggplot2**, an increasingly popular package for creating
+plots in R.
 
 ```{r knitr-options, echo=FALSE}
 knitr::opts_chunk$set(results = "hide",collapse = TRUE,
@@ -57,7 +54,7 @@ Download the tutorial materials to your computer, and make sure you
 know where to find them.
 
 Before starting the tutorial, I suggest quiting applications that are
-not needed, and other "clutter", to reduce distractions.
+not needed and other "clutter" to reduce distractions.
 
 Launch RStudio. It is best if you start with a fresh workspace; you
 can refresh your environment by selecting **Session > Clear
@@ -83,6 +80,10 @@ by the authors of a 2008 *Genetics* article,
 "Single-nucleotide-polymorphism-based association mapping of dog
 stereotypes." These data are stored in a CSV file that was included
 with the rest of the tutorial materials.
+
+Our aim is to investigate the anecdotal claim that dogs representing
+breeds of small size (e.g., Chihuahuas) live longer than those from
+larger-sized breeds (e.g., Saint Bernards).
 
 Import the data into R
 ----------------------
@@ -110,21 +111,17 @@ names(dogs)
 head(dogs)
 tail(dogs)
 summary(dogs)
-class(dogs$aod)
-class(dogs$height)
-class(dogs$weight)
-class(dogs$shortcoat)
 ```
 
-Note that "aod" stands for "age of death".
+*What different types of data are in this table?* Note that "aod" stands
+for "age of death".
 
 Let's take a closer look at the `shortcoat` column:
 
 ```{r inspect-shortcoat}
 unique(dogs$shortcoat)
+table(addNA(dogs$shortcoat))
 ```
-
-Feel free to explore the data further.
 
 The often overlooked scatterplot
 --------------------------------
@@ -132,37 +129,35 @@ The often overlooked scatterplot
 In this tutorial, we will learn about ggplot2 through one of the most
 basic data visualizations: the scatterplot.
  
-The scatterplot is easily overlooked because it is so simple. But it
+The scatterplot is easily overlooked because it is so simple, but it
 can be one of the most effective ways to visualize scientific
-data. Occasionally, embellishments (e.g., varying colors, shapes,
-sizes, labels) can produce stunning visualizations.
+data. Embellishments (e.g., varying colors, shapes, sizes, labels) can
+produce stunning visualizations.
 
-Typically, the purpose of the scatterplot is to investigate whether
-there is an interesting—or surprising—relationship between two
-(continuous) variables. But the scatterplot has many other uses,
-particularly in exploratory data analysis. For example, the
-scatterplot can highlight problems with the data, e.g., "outliers". It
-is also useful for investigating the distribution of the data.
+Scatterplots are typically used to investigate whether there is an
+interesting—or surprising—relationship between two (continuous)
+variables. But the scatterplot has many other uses.  For example, the
+scatterplot can highlight problems with the data (e.g., "outliers").
 
 Although simple, we can explore the key features of ggplot2 via the
-scatterplot, and, in fact, its simplicity is helpful in not
-distracting us from our main goal, which is to learn about how to
-create good plots with ggplot2.
-
-In exploratory data analysis, it is usually helpful to have a focus.
-Here, our aim is to investigate the anecdotal claim that dogs
-representing breeds of small size such as Chihuahuas live longer than
-those from larger-sized breeds such as Saint Bernards.
-
-Let's begin by creating a scatterplot of weight vs. longevity using
-the base R function, `plot`. (No packages needed here.)
+scatterplot. Before doing this, though, let's first create a
+scatterplot of weight vs. longevity using the base R function,
+`plot`. (No special packages are used here.)
 
 ```{r basic-plot, fig.height=4, fig.width=3.5}
 plot(dogs$weight,dogs$aod)
 ```
 
-*Question:* Based on this plot, how would you describe, qualitatively,
-the relationship between weight and longevity?
+What story does this plot tell? Write code here to add this story to
+the plot:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{3em}}
+$$
+
+```{r basic-plot-with-title, echo=FALSE}
+plot(dogs$weight,dogs$aod,main = "smaller dogs tend to live longer")
+```
 
 Our first ggplot2 (with ugly code)
 ----------------------------------
@@ -183,8 +178,7 @@ plot to the screen:
 print(p1)
 ```
 
-This code is indeed quite cumbersome, and some simpler code can accomplish
-the same thing:
+Some slightly simpler code can accomplish the same thing:
 
 ```{r scatterplot-2a}
 p1 <- ggplot(dogs,aes_string(x = "weight",y = "aod")) +
@@ -198,7 +192,7 @@ print(p1)
 For the moment I want to focus on the "uglier" code because it
 highlights better the key elements of a ggplot2 plot:
 
-1. The first input is a data frame.
+1. The first input is the data (stored in a data frame).
 
 2. The second input is an "aesthetic mapping" that defines how columns
    are mapped to features of the plot (axes, shapes, colors, *etc*).
@@ -208,54 +202,66 @@ highlights better the key elements of a ggplot2 plot:
    ([ggplot2.tidyverse.org][ggplot2]) explaining all the "geoms", from
    bar charts to contour plots, with code examples for each.
 
-4. Rather than draw directly to the screen, ggplot2 creates a *ggplot
-   object*, which can be drawn to the screen at any time by calling
-   `print`.
+4. ggplot2 outputs a *ggplot object*, which can be drawn to the screen
+   with `print` (or you can do other things with it).
 
-The distinguishing feature of ggplot2—and what makes ggplot2 so
-powerful—is that plots are created by *adding layers*. This layering
-is what allows for an infinite variety of plots to be created with
-ggplot2. Once you have mastered this layering, you will find that you
-can use ggplot2 to create sophisticated, high-quality plots with
-little effort. Further, the layering approach means that ggplot2 is
-easily extendible, and many R packages have been developed to enhance
+The distinguishing feature of ggplot2 is that plots are created by
+*adding layers*. This layering allows for infinite variety of plots to
+be created. The layering approach means that ggplot2 is easily
+extendible, and many R packages have been developed to enhance
 ggplot2. (We will use two of these packages, ggrepel and cowplot.)
-
-In the remainder, we will explore this layering approach to plotting.
 
 Some improvements
 -----------------
 
-Our plot can be improved. Here we add "layers" to adjust plot's
-appearance, including:
+Our plot can be improved. For example we can use the `labs` function
+to add axis labels, and change how the points are plotted:
 
-+ Clearly label the axes.
-
-+ Add a title.
-
-+ Change the location of the axis tick marks.
-
-+ Choose a more attractive theme (I'm partial to the cowplot
-  theme).
-
-Can you think of other ways the plot can be improved?
-
-```{r scatterplot-improved, message=FALSE}
-library(cowplot)
+```{r scatterplot-improved}
 p1 <- ggplot(dogs,aes_string(x = "weight",y = "aod")) +
-  geom_point() +
-  scale_x_continuous(breaks = seq(0,160,40)) +
-  labs(x = "body weight (lbs)",
-       y = "longevity (years)",
-       title = "longevity vs. size") +
-  theme_cowplot()
+  geom_point(shape = 1) +
+  labs(x = "body weight (lbs)",y = "longevity (years)")
 ```
 
 ```{r scatterplot-improved-2, echo=FALSE}
-print(p1 +
-  theme_cowplot(font_size = 12) +
-  theme(plot.title = element_text(size = 12,face = "plain")))
+print(p1)
 ```
+
+In what other ways can the plot can be improved? Add code for your
+improved plot here:
+
+$$
+\framebox[\textwidth]{\rule{0pt}{6em}}
+$$
+
+A few other functions that you might find useful to improve your plot
+are `scale_x_continuous`, `scale_y_continuous` and the `theme_`
+functions.
+
+```{r scatterplot-improved-3, echo=FALSE, message=FALSE}
+library(cowplot)
+p1 <- ggplot(dogs,aes_string(x = "weight",y = "aod")) +
+  geom_point(size = 2,shape = 21,color = "white",fill = "black") +
+  scale_x_continuous(breaks = seq(0,160,40)) +
+  labs(x = "body weight (lbs)",y = "longevity (years)",
+       title = "longevity vs. size") +
+  theme_cowplot()
+print(p1)
+```
+
+Save your work
+--------------
+
+This is a good point to save our work in an image file that can be
+shared with others.
+
+```{r save-plot}
+ggsave("dogs.pdf",p1,height = 4,width = 4.5)
+ggsave("dogs.png",p1,height = 4,width = 4.5)
+```
+
+*Question:* How does the PDF and PNG differ? When should you save the
+plot as a PDF, and when should you save as a PNG?
 
 Plot the best-fit line
 ----------------------
@@ -266,79 +272,77 @@ maximum lifespan of about 13 years). Let's see how well this estimate
 agrees with the data by plotting the line that best fits these data
 (the "least-squares" estimate).
 
-```{r lm}
+```{r abline-1}
 fit <- lm(aod ~ weight,dogs)
+coef(fit)
 ```
 
-Add two "abline" layers to compare the estimates:
+Write code to add "best fit" line to the plot (and name the new plot
+object "p2"):
 
-```{r scatterplot-with-abline}
+$$
+\framebox[\textwidth]{\rule{0pt}{3em}}
+$$
+
+```{r abline-2, echo=FALSE}
+b <- coef(fit)
 p2 <- p1 +
   geom_abline(color = "dodgerblue",linetype = "dashed",
-              intercept = coef(fit)[1],slope = coef(fit)[2]) +
-  geom_abline(color = "darkorange",linetype = "dashed",
-              intercept = 13,slope = -1/28)
+              intercept = b[1],slope = b[2])
+print(p2)
 ```
 
-```{r scatterplot-with-abline-2, echo=FALSE}
-print(p2 +
-  theme_cowplot(font_size = 12) +
-  theme(plot.title = element_text(size = 12,face = "plain")))
+Now add another "abline" layer to compare our estimate against the
+previous estimate (and name the new plot object "p3"):
+
+$$
+\framebox[\textwidth]{\rule{0pt}{3em}}
+$$
+
+```{r abline-3, echo=FALSE}
+p3 <- p2 +
+  geom_abline(color = "darkorange",linetype = "dashed",
+              intercept = 13,slope = -1/28)
+print(p3)
 ```
-Notice how easy it was to add layers to the existing plot. You can't
-do this quite so easily with other plotting interfaces. Also notice
+
+Notice how easy it was to add layers to the existing plot. Also notice
 that this geom, like most geoms, has properties such as color and size
 that can be adjusted.
 
-Here I created a new plot object, `p2`, rather than overwrite the
-existing one, `p1`. Now that I have both plots, I can decide later on
-which one I want to keep.
-
-How well do the two linear regressions agree?
-
-Add the breed names
--------------------
+Which breeds fit the trend, and which don't?
+--------------------------------------------
 
 It would be helpful if we could tell which breeds are being
-plotted. Adding text to a ggplot is done in two steps: (1) map a column
-to the "label" aesthetic, (2) add a `geom_text` or `geom_label`
-geom.
+plotted. Adding text to a ggplot is also done by adding a layer.
 
-Adding all the breed names will not work, however—there simply isn't
-enough real estate on the plot to accommodate all the breed
-names. Instead, a "smarter" function is `geom_text_repel` from the
-ggrepel package, which adds the labels in a way that makes them more
-readable, and only adds them to the plot when possible. Let's
-appreciate again how simply this is accomplished.
+There's one catch here—there isn't enough real estate on the plot to
+accommodate all the breed names. Let's try the "smart" function
+`geom_text_repel` from the ggrepel package, which adds the labels in a
+way that makes them more readable, and only adds them to the plot when
+possible. Let's appreciate how simply this sophisticated plot is
+created:
 
 ```{r scatterplot-with-labels}
 library(ggrepel)
-p3 <- p2 + geom_text_repel(mapping = aes_string(label = "breed"),
+p4 <- p2 + geom_text_repel(mapping = aes_string(label = "breed"),
                            size = 2.5,color = "gray")
 ```
 
-```{r scatterplot-with-labels-2, fig.height=3.5, fig.width=3.5, echo=FALSE}
-print(p3 + 
-  theme_cowplot(font_size = 12) +
-  theme(plot.title = element_text(size = 12,face = "plain")))
-```
-
-I chose to draw the labels in light gray so as to not drown out the
-scatterplot. Feel free to adjust the size, color and other
-properties.
-
-Also notice that the labels are automatically redrawn as the plot is
+Notice that the labels are automatically redrawn as the plot is
 resized—give it a try.
 
-Which breeds are outliers from the linear trend?
+```{r scatterplot-with-labels-2, echo=FALSE, warning=FALSE}
+print(p4)
+```
 
-A surprising subtlety with color
---------------------------------
+In-class exploration: a surprising subtlety with color
+------------------------------------------------------
 
-Other aesthetics—color, size, shape, *etc*—can also be used enhance a
-scatterplot and tell a good story. In the last chapter of our
-scatterplot, we will visualize the `shortcoat` column with color, and
-in the process discover a complication with adding color to a plot.
+Other "aesthetics"—color, size, shape, *etc*—can also be used to tell
+a visual story. In the last chapter of our exploratory data
+visualization, we will visualize the `shortcoat` column with color,
+and in the process discover a complication.
 
 The `shortcoat` column, you may recall, had values of 0 or 1 (with a
 few NAs).
@@ -347,45 +351,49 @@ few NAs).
 dogs$shortcoat
 ```
 
-In principle, varying the color of the points should be straightforward.
+In principle, varying the color of the points should be
+straightforward.
 
-```{r scatterplot-with-color}
-p4 <- ggplot(dogs,aes_string(x = "weight",y = "aod",label = "breed",
+```{r shortcoat-plot}
+p5 <- ggplot(dogs,aes_string(x = "weight",y = "aod",label = "breed",
                              color = "shortcoat")) +
   geom_point() +
   theme_cowplot()
 ```
 
-```{r scatterplot-with-color-2, fig.width=4, echo=FALSE}
-print(p4 + theme_cowplot(font_size = 12))
+```{r shortcoat-plot-2, echo=FALSE}
+print(p5)
 ```
 
-It "worked" in the sense that we were able to create a plot with
-color, but what we did was not completely correct. What is incorrect?
+What is the problem with this plot, and how can we fix it? (And is
+it really a problem?) Write your code for the improved plot here:
 
-This isn't a problem with the data itself. Rather, it is a problem of
-*data representation*: the discrete-valued, or *categorical* data are
-stored as a *continuously-valued* variable (numeric). The key is to
-change how the data are represented, and convert to a categorical
-variable, which in R is called a "factor":
+$$
+\framebox[\textwidth]{\rule{0pt}{6em}}
+$$
 
-```{r shortcoat-factor}
+```{r shortcoat-plot-3, echo=FALSE}
 dogs$shortcoat <- factor(dogs$shortcoat)
-```
-
-This illustrates the more general point that careful data
-preparation is important for creating good plots.
-
-```{r scatterplot-with-color-3}
-p4 <- ggplot(dogs,aes_string(x = "weight",y = "aod",label = "breed",
+p5 <- ggplot(dogs,aes_string(x = "weight",y = "aod",label = "breed",
                              color = "shortcoat")) +
   geom_point() +
   theme_cowplot()
 ```
 
-```{r scatterplot-with-color-4, fig.width=4, echo=FALSE}
-print(p4 + theme_cowplot(font_size = 12))
+<!-- This isn't a problem with the data itself. Rather, it is a
+problem of *data representation*: the discrete-valued, or
+*categorical* data are stored as a *continuously-valued* variable
+(numeric). The key is to change how the data are represented, and
+convert to a categorical variable, which in R is called a
+"factor". This illustrates the more general point that careful data
+preparation is important for creating good plots. -->
+
+```{r shortcoat-plot-4, echo=FALSE}
+print(p5)
 ```
+
+A little more on color
+----------------------
 
 One the few complaints I have with ggplot2 is that the default colors
 choices are poor. So you will often need to make adjustments to the
@@ -396,82 +404,39 @@ couple here: Color Brewer (https://colorbrewer2.org); and a short
 article, "Color blindness", by Bang Wong in *Nature Methods*
 (2011). For more extensive discussion, see "Fundamentals of data
 visualization" by Claus Wilke. In our scatterplot, the best color
-choice is less clear, so I will let you experiment with different
+choice is less clear, so I will let you experiment with vdifferent
 choices. To override the color defaults, add a "scale_color_manual"
 layer, for example,
 
-```{r scatterplot-with-better-color}
-p5 <- p4 + scale_color_manual(values = c("firebrick","tomato"),
-                              na.value = "black")
+```{r shortcoat-plot-5}
+p6 <- p5 +
+  scale_color_manual(values = c("firebrick","tomato"),
+                     na.value = "skyblue")
 ```
 
-```{r scatterplot-with-better-color-2, fig.width=4, echo=FALSE}
-print(p5 + theme_cowplot(font_size = 12))
+```{r shortcoat-plot-6, echo=FALSE}
+print(p6)
 ```
 
-There are several different ways to specify colors, e.g., by name or
-RGB value. I prefer the named colors; to get the full list of named
-colors in R, run `colors()`. Here, I chose two similar colors because
-I didn't want `shortcoat` to be a major focus of the plot. Also,
-notice that the color of NAs is controlled by a separate argument.
+There are several different ways to specify colors. I prefer
+specifying colours by name; to get the full list of named colors, run
+`colors()`.
 
 The function that controls the color of a discrete variable has an odd
 name: `scale_color_manual`. This is because, in ggplot2, all methods
 that control the mapping of variables to colors, shapes, sizes, axes,
-*etc*, start with `scale_`. For example, plotting weight on the
-square-root scale could help to better space out the breeds with
-smaller weights, and can be done by setting the `trans` argument
-(short for "transformation") in `scale_x_continuous`:
+*etc*, start with `scale_`.
 
-```{r scale-x-continuous, fig.keep="none"}
-p5 + scale_x_continuous(trans = "sqrt")
-```
-
-```{r scale-x-continuous-2, fig.width=4, echo=FALSE}
-print(p5 + scale_x_continuous(trans = "sqrt") + theme_cowplot(font_size = 12))
-```
-
-Let's add back in the breed names and the regression lines for our final
-plot:
-
-```{r scatterplot-final}
-p5 <- p5 + 
-  geom_text_repel(size = 2.5,color = "gray") +
-  geom_abline(color = "dodgerblue",linetype = "dashed",
-              intercept = coef(fit)[1],slope = coef(fit)[2]) +
-  geom_abline(color = "darkorange",linetype = "dashed",
-              intercept = 13,slope = -1/28)
-```
-
-```{r scatterplot-final-2, fig.height=3.5, fig.width=4.5, echo=FALSE}
-print(p5 + theme_cowplot(font_size = 12))
-```
-
-Obviously, we only touched the surface of ggplot2. But once you are
-comfortable with these basic elements, you will find that almost
-everything else in ggplot2 is a variation of what we covered in this
-lesson.
+Obviously, there is much more to ggplot2. But once you are comfortable
+with these basic elements, you will find that almost everything else
+in ggplot2 is a variation of what we covered in this lesson.
 
 *Optional exercise:* Try varying shape instead of color. Use
-`scale_shape_manual` to select the shapes. Run `plot(0:23,pch =
-0:23)` to look up the R shape numbers.
+`scale_shape_manual` to select the shapes. Running `plot(0:23,pch =
+0:23)` will give you all the shapes to choose from.
 
-*Optional exercise:* Try varying size of the points instead of their
-color. What problem do you run into, and what is the solution?
-
-Save your work
---------------
-
-This is a good point to save our work in an image file that can be
-shared with others.
-
-```{r save-plot}
-ggsave("dogs.pdf",p4,height = 4,width = 4.5)
-ggsave("dogs.png",p4,height = 4,width = 4.5)
-```
-
-*Question:* How does the PDF and PNG differ? When should you save the
-plot as a PDF, and when should you save as a PNG?
+*Optional exercise:* Try varying point size instead of color. What
+ problem do you run into, and what is the solution?
 
 Programming challenge: Mapping the genetic basis of physiological and behavioral traits in outbred mice
 =========================================================================================================
@@ -750,31 +715,6 @@ consider that:
 
 Notes
 =====
-
-Code summary
-------------
-
-This is the minimal code reproducing the final scatterplot:
-
-```{r recap}
-library(ggplot2)
-library(ggrepel)
-library(cowplot)
-dogs <- read.csv("dogs.csv",stringsAsFactors = FALSE)
-dogs$shortcoat <- factor(dogs$shortcoat)
-fit <- lm(aod ~ weight,dogs)
-p5 <- ggplot(dogs,aes_string(x = "weight",y = "aod",label = "breed",
-             color = "shortcoat")) +
-  geom_point() +
-  geom_text_repel(size = 2.5,color = "gray") +
-  geom_abline(color = "dodgerblue",linetype = "dashed",
-              intercept = coef(fit)[1],slope = coef(fit)[2]) +
-  geom_abline(color = "darkorange",linetype = "dashed",
-              intercept = 13,slope = -1/28) +
-  scale_color_manual(values = c("firebrick","tomato"),
-                     na.value = "black") +
-  theme_cowplot()
-```
 
 An interactive plot
 -------------------
