@@ -43,8 +43,8 @@ using **ggplot2**, an increasingly popular package for creating
 plots in R.
 
 ```{r knitr-options, echo=FALSE}
-knitr::opts_chunk$set(results = "hide",collapse = TRUE,
-                      fig.height = 3,fig.width = 3,fig.align = "center")
+knitr::opts_chunk$set(results = "hide",collapse = TRUE,fig.height = 3,
+                      fig.width = 3,fig.align = "center")
 ```
 
 Setup
@@ -94,7 +94,7 @@ sure your working directory is set to the location of these data,
 otherwise R will not be able to find the file.)
 
 ```{r read-data}
-dogs <- read.csv("dogs.csv",stringsAsFactors = FALSE)
+dogs <- read.csv("dogs.csv", stringsAsFactors = FALSE)
 ```
 
 A first look at the data
@@ -145,7 +145,7 @@ scatterplot of weight vs. longevity using the base R function,
 `plot`. (No special packages are used here.)
 
 ```{r basic-plot, fig.height=4, fig.width=3.5}
-plot(dogs$weight,dogs$aod)
+plot(dogs$weight, dogs$aod)
 ```
 
 What story does this plot tell? Write code here to add this story to
@@ -156,7 +156,7 @@ $$
 $$
 
 ```{r basic-plot-with-title, echo=FALSE}
-plot(dogs$weight,dogs$aod,main = "smaller dogs tend to live longer")
+plot(dogs$weight, dogs$aod, main = "smaller dogs tend to live longer")
 ```
 
 Our first ggplot2 (with ugly code)
@@ -167,8 +167,8 @@ of ggplot2 over `plot` will not be immediately clear.
 
 ```{r scatterplot-1}
 library(ggplot2)
-p1 <- ggplot(dogs,aes_string(x = "weight",y = "aod"))
-p1 <- ggplot_add(geom_point(),p1)
+p1 <- ggplot(dogs, aes_string(x = "weight", y = "aod"))
+p1 <- ggplot_add(geom_point(), p1)
 ```
 
 Where is the plot? We need to call `print`, which tells R to draw the
@@ -181,7 +181,7 @@ print(p1)
 Some slightly simpler code can accomplish the same thing:
 
 ```{r scatterplot-2a}
-p1 <- ggplot(dogs,aes_string(x = "weight",y = "aod")) +
+p1 <- ggplot(dogs, aes_string(x = "weight", y = "aod")) +
   geom_point()
 ```
 
@@ -218,9 +218,9 @@ Our plot can be improved. For example we can use the `labs` function
 to add axis labels, and change how the points are plotted:
 
 ```{r scatterplot-improved}
-p1 <- ggplot(dogs,aes_string(x = "weight",y = "aod")) +
+p1 <- ggplot(dogs, aes_string(x = "weight", y = "aod")) +
   geom_point(shape = 1) +
-  labs(x = "body weight (lbs)",y = "longevity (years)")
+  labs(x = "body weight (lbs)", y = "longevity (years)")
 ```
 
 ```{r scatterplot-improved-2, echo=FALSE}
@@ -240,10 +240,10 @@ functions.
 
 ```{r scatterplot-improved-3, echo=FALSE, message=FALSE}
 library(cowplot)
-p1 <- ggplot(dogs,aes_string(x = "weight",y = "aod")) +
-  geom_point(size = 2,shape = 21,color = "white",fill = "black") +
+p1 <- ggplot(dogs, aes_string(x = "weight", y = "aod")) +
+  geom_point(size = 2, shape = 21, color = "white",  fill = "black") +
   scale_x_continuous(breaks = seq(0,160,40)) +
-  labs(x = "body weight (lbs)",y = "longevity (years)",
+  labs(x = "body weight (lbs)", y = "longevity (years)",
        title = "longevity vs. size") +
   theme_cowplot()
 print(p1)
@@ -256,8 +256,8 @@ This is a good point to save our work in an image file that can be
 shared with others.
 
 ```{r save-plot}
-ggsave("dogs.pdf",p1,height = 4,width = 4.5)
-ggsave("dogs.png",p1,height = 4,width = 4.5)
+ggsave("dogs.pdf", p1, height = 4, width = 4.5)
+ggsave("dogs.png", p1, height = 4, width = 4.5)
 ```
 
 *Question:* How does the PDF and PNG differ? When should you save the
@@ -273,7 +273,7 @@ agrees with the data by plotting the line that best fits these data
 (the "least-squares" estimate).
 
 ```{r abline-1}
-fit <- lm(aod ~ weight,dogs)
+fit <- lm(aod ~ weight, dogs)
 coef(fit)
 ```
 
@@ -287,8 +287,8 @@ $$
 ```{r abline-2, echo=FALSE}
 b <- coef(fit)
 p2 <- p1 +
-  geom_abline(color = "dodgerblue",linetype = "dashed",
-              intercept = b[1],slope = b[2])
+  geom_abline(color = "dodgerblue", linetype = "dashed",
+              intercept = b[1], slope = b[2])
 print(p2)
 ```
 
@@ -301,8 +301,8 @@ $$
 
 ```{r abline-3, echo=FALSE}
 p3 <- p2 +
-  geom_abline(color = "darkorange",linetype = "dashed",
-              intercept = 13,slope = -1/28)
+  geom_abline(color = "darkorange", linetype = "dashed",
+              intercept = 13, slope = -1/28)
 print(p3)
 ```
 
@@ -326,7 +326,7 @@ created:
 ```{r scatterplot-with-labels}
 library(ggrepel)
 p4 <- p2 + geom_text_repel(mapping = aes_string(label = "breed"),
-                           size = 2.5,color = "gray")
+                           size = 2.5, color = "gray")
 ```
 
 Notice that the labels are automatically redrawn as the plot is
@@ -355,8 +355,8 @@ In principle, varying the color of the points should be
 straightforward.
 
 ```{r shortcoat-plot}
-p5 <- ggplot(dogs,aes_string(x = "weight",y = "aod",label = "breed",
-                             color = "shortcoat")) +
+p5 <- ggplot(dogs, aes_string(x = "weight", y = "aod", label = "breed",
+                              color = "shortcoat")) +
   geom_point() +
   theme_cowplot()
 ```
@@ -374,8 +374,8 @@ $$
 
 ```{r shortcoat-plot-3, echo=FALSE}
 dogs$shortcoat <- factor(dogs$shortcoat)
-p5 <- ggplot(dogs,aes_string(x = "weight",y = "aod",label = "breed",
-                             color = "shortcoat")) +
+p5 <- ggplot(dogs, aes_string(x = "weight", y = "aod", label = "breed",
+                              color = "shortcoat")) +
   geom_point() +
   theme_cowplot()
 ```
@@ -410,7 +410,7 @@ layer, for example,
 
 ```{r shortcoat-plot-5}
 p6 <- p5 +
-  scale_color_manual(values = c("firebrick","tomato"),
+  scale_color_manual(values = c("firebrick", "tomato"),
                      na.value = "skyblue")
 ```
 
@@ -725,16 +725,16 @@ Here is an example of a plot that allows the data to be explored
 ```{r scatterplot-plotly, message=FALSE, warning=FALSE}
 library(plotly)
 library(htmlwidgets)
-p <- plot_ly(data = dogs,type = "scatter",mode = "markers",
-             x = ~weight,y = ~aod,color = ~shortcoat,
-             text = ~sprintf("%s\n (%0.1f lbs, %0.1f years)",breed,weight,aod),
-             marker = list(line = list(color = "white",width = 1),size = 9),
-             hoverinfo = "text",width = 600,height = 500)
+p <- plot_ly(data = dogs, type = "scatter", mode = "markers",
+             x = ~weight, y = ~aod, color = ~shortcoat,
+             text = ~sprintf("%s\n (%0.1f lbs, %0.1f years)", breed, weight, aod),
+             marker = list(line = list(color = "white", width = 1), size = 9),
+             hoverinfo = "text", width = 600, height = 500)
 p <- layout(p,
             xaxis = list(title = "weight (lbs)"),
             yaxis = list(title = "longevity (years)"),
-            hoverlabel = list(bgcolor = "white",bordercolor = "black"))
-saveWidget(p,"dogs.html",selfcontained = TRUE)
+            hoverlabel = list(bgcolor = "white", bordercolor = "black"))
+saveWidget(p, "dogs.html", selfcontained = TRUE)
 ```
 
 [Plotly][plotly] is a powerful package for creating interactive plots,
