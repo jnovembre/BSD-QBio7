@@ -1,7 +1,7 @@
 # A Makefile for generating the PDFs from the R Markdown files.
 #
 # Note to create the PDF, you need a file laptops.csv. If not available,
-# you can copy laptops_2019.csv.
+# you can rename laptops_2019.csv or laptops_2020.csv as laptops.csv.
 #
 
 # RULES

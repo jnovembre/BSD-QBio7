@@ -8,14 +8,14 @@ output:
 author:
   name: Stefano Allesina and Peter Carbonetto
   affiliation: University of Chicago
-date: August 7, 2020
+date: August 12, 2021
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
 spacing: single
 graphics: yes
 endnote: no
-thanks: "This document is included as part of the Basic Computing 1---Introduction to R tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2020. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer and Matthew Stephens for their guidance."
+thanks: "This document is included as part of the Basic Computing 1---Introduction to R tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer and Matthew Stephens for their guidance."
 abstract: "The aim of this workshop is to introduce `R` and `RStudio`,
   and show how it can be used to analyze data in an automated,
   replicable way. We will illustrate the notion of assignment and
@@ -27,7 +27,7 @@ abstract: "The aim of this workshop is to introduce `R` and `RStudio`,
 
 ```{r knitr-opts, include=FALSE}
 knitr::opts_chunk$set(comment = "#",collapse = TRUE,results = "hide",
-                      fig.align = "center", eval = FALSE)
+                      fig.align = "center")
 ```
 
 About this tutorial
@@ -36,8 +36,10 @@ About this tutorial
 We will work through the tutorial examples all together as a class, as
 well as in smaller groups. Feel to free to try the examples on your
 own, before or after the in-class tutorial. To run the examples before
-the data have been collected in class, you may use the 2019 data,
-which are stored in file `laptop_2019.csv`.
+the data have been collected in class, you may use the data from
+previous years, stored in files `laptop_2019.csv` and
+`laptop_2020.csv`. To use these data, rename one of them as
+`laptops.csv`.
 
 Setup
 =====
@@ -464,7 +466,7 @@ and
 
 ```{r laptops-subset-3}
 rows <- which(laptops$cpus == 2)
-laptops[rows,]
+laptops[rows, ]
 ```
 
 The last approach is interesting because it involves creating a new
@@ -477,6 +479,10 @@ We will learn more about logical expressions below.
 
 **Exercise:** How would you select the subset of laptops that have
 Windows?
+
+```{r laptops-subset-4, echo=FALSE}
+subset(laptops, os == "windows")
+```
 
 A side note: "`<-`" versus "`=`"
 --------------------------------
@@ -561,7 +567,7 @@ makes sense, of course!). For example,
 unique(toupper(x))
 ```
 
-is equivalent to
+is effectively equivalent to
 
 ```{r test-data-6}
 y <- toupper(x)
@@ -658,20 +664,32 @@ is the modulo (`%%`), which gives the remainder from integer division:
 x %% 3
 ```
 
+For more complex calculations, the mathematical and statistical
+operations can be combined together, for example,
+
+```{r numeric-data-9}
+y <- log(x / mean(x))
+```
+
 **Exercise:** Combine some of the functions and/or operators mentioned
 above to compute the standard deviation of `x`. Compare your
-answer against R's built-in solution, `sd(x)`. *Hint:* Use the
+answer against R's built-in solution, `y <- sd(x)`. *Hint:* Use the
 definition of variance. Write your answer in the box below.
 
 $$
 \framebox[\textwidth]{\rule{0pt}{3em}}
 $$
 
+```{r numeric-data-10, echo=FALSE}
+n <- length(x)
+sqrt(n / (n-1) * mean((x - mean(x))^2))
+```
+
 Logical data
 ------------
 
 The `laptops` data set does not contain logical data. But we can
-generate logical data from one of the columns:
+*generate* logical data from one of the columns:
 
 ```{r logical-data-1}
 x <- laptops$os == "mac"
@@ -777,21 +795,22 @@ Given text data `x` and numeric data `y`, construct a new data
 frame:
 
 ```{r build-laptops-2}
-dat <- data.frame(os = x,cpu = y)
+dat <- data.frame(os = x, cpu = y)
 ```
 
-Factors
-=======
+In-class activity: what is a "factor"?
+======================================
 
 So far, we have gotten acquainted with three basic data types:
 `character`, `numeric` and `logical`. Here we introduce a fourth: the
 `factor`. Factors are vectors, like the other atomic data types we
 have seen. What is unusual about factors is that there is no
 equivalent of factors in other popular programming languages, at least
-not as a native data type.
+not as a native data type. Here we will explore factors and understand
+how and when they could be useful.
 
 None of the columns in our `laptops` table are a factor, but we can
-easily create a factor from one of the columns using a function
+create a factor from one of the columns using a function appropriately
 called "factor". Let's try this with the "mem" column:
 
 ```{r factors-1}
@@ -801,20 +820,16 @@ class(x)
 class(y)
 ```
 
-Let's now compare the contents of `x` and `y`:
+Let's now inspect the contents of `x` and `y`:
 
 ```{r factors-2}
 print(x)
 print(y)
-```
-
-Although the contents of `x` and `y` look very similar, the result of
-`summary` is very different:
-
-```{r factors-3}
 summary(x)
 summary(y)
 ```
+
+How should we interpret the second data summary?
 
 Let's try the same with the "os" column:
 
@@ -834,19 +849,15 @@ think a factor is?
 numeric or factor? What about the "os" column? Are other columns good
 candidates for being factors?
 
-These questions---should I convert by data to a factor or not---touch
-on the broader question of *data representation* or *encoding*.
-Choosing the right representation of your data can be a critical
-element to your analysis. For example, in quantitative genetics the
-genotypes of a diploid organism (e.g., AA, AG, GG) are conventionally
-encoded as 0, 1 and 2. This numerical encoding has many advantages;
-for example, the allele frequency is easily calculated as
-`mean(x)/2`. Judicious use of factors can also help you perform
-complex calculations very simply. (You may find that factors are
-particularly useful in the programming challenge!)
+These questions---should I convert my data to a factor---touch on the
+broader question of *data representation* or *data encoding*.
+Choosing the right representation of your data can be important to
+your analysis. Judicious use of factors can also help you perform
+complex calculations very simply. (In fact you may find that factors
+are useful in the programming challenge.)
 
-If you prefer the "os" column to be a factor, you can change it inside
-the data frame by doing
+If you prefer the "os" column to be a factor, for example, you can
+change it inside the data frame by doing
 
 ```{r factors-5}
 laptops$os <- factor(laptops$os)
@@ -889,16 +900,16 @@ all rows, or a subset of the rows?
 For each question, record your answer, as well as the code you wrote
 to generate the answer.
 
-Use this code to create a *script*---a text file containing the code
-necessary to run the complete data analysis, starting with the
-`read.csv` call, and ending with the calculations that produce the
-answers.
+Use this code to create a *script* or a *program*---a text file
+containing the code necessary to run the data analysis, starting with
+reading the data into R, and ending with the calculations that
+produce the answers.
 
 Once you have written your script, verify that it runs, and save the
 file somewhere on your computer. Give your script a memorable name
-such as `analyze_laptops_data.R`. Also, please add a few comments
-(these are lines starting with "`#`") explaining in plain language
-what the code does. We will use Etherpad to share our scripts.
+such as `analyze_laptops_data.R`. Also, a few comments (these are
+lines starting with "`#`") explaining in plain language what the code
+does. We will use Etherpad to share our programs.
 
 Programming Challenge
 =====================
@@ -908,7 +919,7 @@ Instructions
 
 Work with your team to solve the following exercise.  When you have
 found the solution, go to the
-[`jnovembre.github.io/BSD-QBio6`][bsd-qbio-site] and follow the
+[`jnovembre.github.io/BSD-QBio7`][bsd-qbio-site] and follow the
 link "Submit solution to challenge 1" to submit your answer.
 
 At the end of the boot camp, the group with the highest number of
@@ -1131,9 +1142,11 @@ available" or "not assigned", and is commonly called "missing
 data". One special feature of `R` is that it often gracefully
 handles data sets containing missing data.
 
-**Exercise:** Set a few entries in the `laptops` data frame to `NA`,
-then run `summary(laptops)`. How are the missing data reported in the
-summary?
+**Exercise:** Set a few entries in the `laptops` data frame to the
+value `NA`; for example, to set the first row and column to `NA` you
+could do `laptops[1,1] <- NA`. (You might want to make these changes
+to a copy of the data frame instead.) Then run `summary(laptops)`. How
+are the missing data reported in the summary?
 
 Optional group activity: Analyzing genetic data
 ===============================================
@@ -1186,5 +1199,5 @@ or `chr6[ ,"nA1A1"]`).
 [cran-rstudio]: https://cran.rstudio.com
 [rstudio-download]: https://www.rstudio.com/products/rstudio/download
 [r-pkg]: https://www.r-pkg.org
-[bsd-qbio-site]: https://stefanoallesina.github.io/BSD-QBio5
+[bsd-qbio-site]: https://jnovembre.github.io/BSD-QBio7
 [hgdp]: http://hagsc.org/hgdp
