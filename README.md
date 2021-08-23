@@ -1,7 +1,7 @@
 # BSD-QBio7
 
-Repository for the seventh edition of the University of Chicago's *BSD Quantitative
-Biology Bootcamp*
+Repository for the seventh edition of the University of Chicago's *BSD
+Quantitative Biology Bootcamp.*
 
 ## Instructors
 
@@ -18,7 +18,7 @@ Link: [Preparing your computer and yourself for QBio7.](https://jnovembre.github
 #### Notes
 
 This material is based upon work supported by the National Science
-Foundation under Grant Number 1734818, and built upon the BSD-QBio 
+Foundation under Grant Number 1734818, and built upon the BSD-QBio
 program first started by Stefano Alesina and Stephanie Palmer.
 
 Any opinions, findings, and conclusions or recommendations expressed
