@@ -16,80 +16,71 @@ output:
     latex_engine: xelatex
     keep_tex: true
 ---
-# BSD qBio$^6$ 
+# BSD qBio$^7$ 
 
 ## Group Schedule: *Papilio polytes*
  ![](https://github.com/StefanoAllesina/BSD-QBio5/raw/master/logo_group/Papilio_polytes.png)     
 
-### Sunday, September 13 
+### Thursday, September 9 
 
-------------------    -----------------------------------------------------
-**3:00-4:00**         Check-in with TAs (DISCORD Team Rooms)               
-**4:00-4:20**         Welcome to qBio6 - Novembre and Prince (ZOOM A)      
-**4:30-5:15**         Team building activities (DISCORD Team Rooms)        
-**5:30-6:30**         Group compacts (DISCORD Team Rooms)                  
-------------------    -----------------------------------------------------
+------------------    --------------------------------------------
+**10:30-11:00**       Check-in with TAs                           
+**11:00-11:20**       Welcome to qBio7 - Novembre and Cobey       
+**11:20-12:00**       Team-building activities                    
+**12:00-1:30**        Lunch and group compacts                    
+**1:30-3:00**         Basic comp. I / Advanced comp. I            
+**3:00-3:30**         Coffee break                                
+**3:30-5:00**         Basic comp. I / Advanced comp. I            
+------------------    --------------------------------------------
 
-### Monday, September 14 
+### Friday, September 10 
 
-------------------    -----------------------------------------------------
-**8:30-10:00**        Basic comp. I / Advanced comp I (ZOOM A / ZOOM C)    
-**10:00-10:30**       Coffee break (DISCORD)                               
-**10:30-12:00**       Basic comp. I / Advanced comp I (ZOOM A / ZOOM C)    
-**12:00-1:30**        MBL Orientation + Lunch                              
-**1:30-3:00**         Basic comp. II / Advanced comp II (ZOOM A / ZOOM C)  
-**3:00-3:30**         Coffee break (DISCORD)                               
-**3:30-5:00**         Basic comp. II / Advanced comp II (ZOOM A / ZOOM C)  
-**5:00-5:30**         Welcome to UChicago Biosciences - Prince (ZOOM A)    
-**8:00-9:00**         Happy Hour (DISCORD)                                 
-------------------    -----------------------------------------------------
+------------------    --------------------------------------------
+**8:30-10:00**        Basic comp. II / Advanced comp. II          
+**10:00-10:30**       Coffee break                                
+**10:30-12:00**       Basic comp. II / Advanced comp. II          
+**12:00-1:30**        Lunch                                       
+**1:30-3:30**         Professional Development with TAs           
+**3:30-4:00**         Coffee break                                
+**4:00-4:30**         Welcome to UChicago Biosciences - Prince    
+**4:30-5:30**         Science Faculty Star - Doroin               
+------------------    --------------------------------------------
 
-### Tuesday, September 15 
+### Monday, September 13 
 
-------------------    -----------------------------------------------------
-**8:30-10:00**        Data visualization (DISCORD Reg)                     
-**10:00-10:30**       Coffee break (DISCORD)                               
-**10:30-12:00**       Data visualization (DISCORD Reg)                     
-**12:00-1:30**        Lunch                                                
-**1:30-3:00**         Statistics for a data rich world (DISCORD Harper)    
-**3:00-3:30**         Coffee break (DISCORD)                               
-**3:30-5:00**         Statistics for a data rich world (DISCORD Harper)    
-**7:15-8:00**         Science Faculty Star (ZOOM A)                        
-------------------    -----------------------------------------------------
+------------------    --------------------------------------------
+**8:30-10:00**        Data visualization - Carbonetto             
+**10:00-10:30**       Coffee break                                
+**10:30-12:00**       Data visualization - Carbonetto             
+**12:00-1:30**        Lunch                                       
+**1:30-3:00**         Statistics for a data rich world - L. Chen  
+**3:00-3:30**         Coffee break                                
+**3:30-5:00**         Statistics for a data rich world - L. Chen  
+------------------    --------------------------------------------
 
-### Wednesday, September 16 
+### Tuesday, September 14 
 
-------------------    -----------------------------------------------------
-**8:30-10:00**        Reproducibility of data analysis (DISCORD Crerar)    
-**10:00-10:30**       Coffee break (DISCORD)                               
-**10:30-12:00**       Reproducibility of data analysis (DISCORD Crerar)    
-**7:15-8:00**          Wednesday Zoom Happy Hour (DISCORD)                 
-------------------    -----------------------------------------------------
+------------------    --------------------------------------------
+**8:30-10:00**        Defensive programming - Cobey               
+**10:00-10:30**       Coffee break                                
+**10:30-12:00**       Defensive programming - Cobey               
+**12:00-1:30**        Lunch                                       
+**1:30-3:00**         Workshop - Population genetics - Berg       
+**3:00-3:30**         Coffee break                                
+**3:30-5:00**         Workshop - Population genetics - Berg       
+------------------    --------------------------------------------
 
-### Thursday, September 17 
+### Wednesday, September 15 
 
-------------------    -----------------------------------------------------
-**8:30-10:00**        Workshop M. Chen (DISCORD Harper)                    
-**10:00-10:30**       Coffee break (DISCORD)                               
-**10:30-12:00**       Workshop M. Chen (DISCORD Harper)                    
-**12:00-1:30**        Lunch                                                
-**1:30-3:00**         Workshop Novembre (DISCORD Reg)                      
-**3:00-3:30**         Coffee break (DISCORD)                               
-**3:30-5:00**         Workshop Novembre (DISCORD Reg)                      
-**7:15-9:15**         Professional Development Night with CAs              
-------------------    -----------------------------------------------------
-
-### Friday, September 18 
-
-------------------    -----------------------------------------------------
-**10:00-10:30**       Coffee break (DISCORD)                               
-**12:00-1:30**        Lunch                                                
-**1:30-3:00**         Workshop Khan (DISCORD Crerar)                       
-**3:00-3:30**         Coffee break (DISCORD)                               
-**3:30-5:00**         Workshop Khan (DISCORD Crerar)                       
-**8:00-8:20**         Wrap up Session (ZOOM A)                             
-**8:20-9:00**         Finishing celebration (DISCORD)                      
-------------------    -----------------------------------------------------
+------------------    --------------------------------------------
+**10:00-10:30**       Coffee break                                
+**12:00-1:30**        Lunch                                       
+**1:30-3:00**         Workshop - Immunology - Khan                
+**3:00-3:30**         Coffee break                                
+**3:30-5:00**         Workshop - Immunology - Khan                
+**5:00-5:30**         Wrap-up                                     
+**5:30-7:00**         Dinner reception                            
+------------------    --------------------------------------------
 
 
 
