@@ -40,10 +40,10 @@ output:
 **10:00-10:30**       Coffee break                                
 **10:30-12:00**       Basic comp. II / Advanced comp. II          
 **12:00-1:30**        Lunch                                       
-**1:30-3:30**         Professional Development with TAs           
-**3:30-4:00**         Coffee break                                
-**4:00-4:30**         Welcome to UChicago Biosciences - Prince    
-**4:30-5:30**         Science Faculty Star - Doroin               
+**1:30-2:00**         Welcome to UChicago Biosciences - Prince    
+**2:00-3:45**         Professional Development with TAs           
+**3:45-4:15**         Coffee break                                
+**4:15-5:00**         Science Faculty Star - Doroin               
 ------------------    --------------------------------------------
 
 ### Monday, September 13 
