@@ -1,20 +1,22 @@
 ---
-title: "Advanced Computing -- Data wrangling and plotting"
+title: "Advanced Computing --- Data wrangling and plotting"
 output:
   pdf_document:
     keep_tex: false
     latex_engine: pdflatex
-    template: style/readable.tex
+    template: readable.tex
 author:
   name: Stefano Allesina
   affiliation: University of Chicago
-date: Aug 2020
+date: August 25, 2021
+chapter: III
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
 spacing: single
 graphics: yes
 endnote: no
+thanks: "This document is included as part of the Advanced Computing tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`."
 ---
 
 ```{r setup, echo=FALSE, eval=TRUE}
@@ -136,6 +138,10 @@ pubs %>% summarise(avg = mean(`Cited by`),
                     median = median(`Cited by`))
 ```
 
+$$
+\zebrafish
+$$
+
 ## Summaries by group
 
 One of the most useful features of `dplyr` is the ability to produce statistics for the data once subsetted by *groups*. For example, we would like to compute the average number of citations by journal and year:
@@ -192,6 +198,10 @@ pubs %>%
 ```
 
 in this way, you can easily comment out a part of the pipeline (or add another piece in the middle).
+
+$$
+\octopus
+$$
 
 # Data plotting
 The most salient feature of scientific graphs should be clarity. Each figure should make crystal-clear a) what is being plotted; b) what are the axes; c) what do colors, shapes, and sizes represent; d) the message the figure wants to convey. Each figure is accompanied by a (sometimes long) caption, where the details can be explained further, but the main message should be clear from glancing at the figure (often, figures are the first thing editors and referees look at).
@@ -254,7 +264,12 @@ As you can see, we wrote a well-formed sentence, composed of **data** + **mappin
 ggplot(data = pubs) + aes(x = Year, fill = Journal) + geom_bar()
 ```
 
+$$
+\nematode
+$$
+
 ## Scatterplots
+
 Using `ggplot2`, one can produce very many types of graphs. The package works very well for 2D graphs (or 3D rendered in two dimensions), while it lack capabilities to draw proper 3D graphs, or networks.
 
 The main feature of `ggplot2` is that you can tinker with your graph fairly easily, and with a common grammar. You don't have to settle on a certain presentation of the data until you're ready, and it is very easy to switch from one type of graph to another.
@@ -458,6 +473,10 @@ ggplot(data = small_collab) +
   geom_bar(data = large_collab, fill = "blue", alpha = 0.5)
 ```
 
+$$
+\tiktaalik
+$$
+
 # Tidying up data
 
 The best way to organize data for plotting and computing is the *tidy form*, meaning that a) each variable has its own column, and b) each observation has its own row. When data are not in tidy form, you can use the package `tidyr` to reshape them. 
@@ -488,6 +507,10 @@ avg_authors %>% gather(Journal, Average_num_authors, 2:3)
 # alternatively, if it's cleaner
 avg_authors %>% gather(Journal, Average_num_authors, -Year)
 ```
+
+$$
+\mouse
+$$
 
 # Joining tables
 
@@ -553,6 +576,10 @@ Besides `inner_join(x, y)`, you can use:
 
 - `anti_join(x, y)`: return all rows from `x` where there are not matching values in `y`.
 
+$$
+\yeast
+$$
+
 ## Exercises in groups
 
 The file `data/Chicago_Crimes_May2016.csv` contains a list of all the crimes reported in Chicago in May 2016. Form small groups and work on the following exercises:
@@ -570,3 +597,7 @@ The file `data/Chicago_Crimes_May2016.csv` contains a list of all the crimes rep
 - **Dangerous time** which time of the day is the most dangerous (Extract the hour of the day from `Date`).
 
 - **Correlation between crimes** [difficult] which crimes tend to have the same pattern? Divide the crimes by day and type, and plot the correlation between crimes using `geom_tile` and colouring the cells according to the correlation (see `cor` for a function that computes the correlation between different columns).
+
+$$
+\fruitfly
+$$
