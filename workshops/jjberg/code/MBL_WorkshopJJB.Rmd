@@ -1,27 +1,36 @@
 ---
-output: 
-  pdf_document: 
-    highlight: tango
-editor_options: 
-  chunk_output_type: console
+title: "Population genetics workshop"
+output:
+  pdf_document:
+    keep_tex: false
+    latex_engine: pdflatex
+    template: readable.tex
+author:
+  name: Jeremy Berg
+  affiliation: University of Chicago
+date: August 25, 2021
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: single
+graphics: yes
+endnote: no
+chapter: XIII
+thanks: "This document is included as part of the Population Genetics workshop packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`."
+abstract: "This exercise is going to expose you to several basic ideas
+  in probability and statistics as well as show you the utility of using
+  R for basic statistical analyses.  We'll do so in the context of a
+  basic population genetic analysis."
 ---
+
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='figs/',
                       echo=TRUE, eval=FALSE, warning=FALSE, message=FALSE)
 ```
 
-# Population genetics workshop
-
-Instructor: **Jeremy Berg**  
-
-### Welcome 
-
-This excercise is going to expose you to several basic ideas in probability and statistics as well as show you the utility of using R for basic statistical analyses.  We'll do so in the context of a basic population genetic analysis.  
-
 ### The scenario
 
-As a biologist, you will learn what are the major patterns that are expected when the data you work with is clean. Using that expertise will save you from the mistake of misinterpreting error-prone data. In population genetics, there are a number of patterns that we expect to see immediately in our datasets. In this exercise you will explore one of those major patterns.  Rather than give it away --- let's begin some analysis and see what we find.  In the narative that follows, we'll refine our thinking as we go.  
-
+As a biologist, you will learn what are the major patterns that are expected when the data you work with is clean. Using that expertise will save you from the mistake of misinterpreting error-prone data. In population genetics, there are a number of patterns that we expect to see immediately in our datasets. In this exercise you will explore one of those major patterns.  Rather than give it away --- let's begin some analysis and see what we find.  In the narative that follows, we'll refine our thinking as we go.
 
 ### Introductory terminology
 
@@ -30,7 +39,7 @@ As a biologist, you will learn what are the major patterns that are expected whe
 - Minor allele: The allele that is more rare in a population 
 - Major allele: The allele that is more common in a population 
 - Genotype: The set of alleles carried by an individual (E.g. AA, AC, CC; or AA, Aa, aa; or 0, 1, 2)
-- Genotyping array: A technology based on hybridization with probes and florensence that allows genotype calls to be made at 100s of thousands of SNPs per individual at an affordable cost.  
+- Genotyping array: A technology based on hybridization with probes and florensence that allows genotype calls to be made at 100s of thousands of SNPs per individual at an affordable cost.
 
 ### The data-set and basic pre-processing
 
@@ -43,6 +52,10 @@ following link:
 `H938.fam`, `H938.bim` from this link: <http://bit.ly/1aluTln>).  We have also extracted the basic counts of three possible genotypes.  
 
 The files with these genotype frequencies are your starting points. 
+
+$$
+\fruitfly
+$$
 
 ### Note about logistics
 
@@ -110,6 +123,10 @@ Our data are from 938 individuals. When the counts are less than this total, it'
 **Question:**  Do most of the SNPs have complete data?  
 **Question:** What is the lowest count observed?   Is this number in rough agreement with what we know about how the genome-wide missingness rate filter was set to >98.5% of all SNPs?
 
+$$
+\xenopus
+$$
+
 ### Calculating genotype and allele frequencies
 
 Let's move on to calculating genotype and allele frequencies.  For allele $A_1$ we will denote its frequency among all the samples as $p_1$, and likewise for $A_2$ we will use $p_2$. 
@@ -174,6 +191,10 @@ By eye, we can see that the fit isn't perfect though.  There is a systematic def
 
 Let's look at this more closely and more formally... 
 
+$$
+\ecoli
+$$
+
 ### Testing Hardy Weinberg
 
 Pearson's $\chi^2$-test is a basic statistical test that can be used to see if count data $o_i$ conform to a particular expectation.  It is based on the $X^2$-test statistic:
@@ -230,6 +251,10 @@ qplot(2*p1*(1-p1), p12, data = g) + geom_abline(intercept = 0,
 
 Most of the points fall below the y=x line.  That is, we see a systematic deficiency of heterozygotes (and this implies a concordant excess of homozygotes).  This general pattern is contributing to the departure from HW seen in the $X^2$ statistics. 
 
+$$
+\tiktaalik
+$$
+
 ### Discussion: Population subdivision and departures from Hardy-Weinberg expectations
 
 We might wonder why the departure from Hardy-Weinberg proportional is directional, in that, on average, we are seeing a deficiency of heterozygotes (and excess of homozygotes).  One enlightening way to understand this is by thinking about what Sewall Wright (an eminent former University of Chicago professor) called "the correlation of uniting gametes".  To produce an $A_1 A_1$ individual we need an $A_1$-bearing sperm and an $A_1$-bearing egg to unite.  If these events were independent of each other, we would expect $A_1 A_1$ individuals at the rate predicted by multiplying probabilites, that is, $p_1^2$ (an idea we introduced above).  However, what if uniting gametes are positively correlated, in that an $A_1$-bearing sperm is more likely to join with an $A_1$-bearing egg?  In this case we will have more $A_1 A_1$ individuals than predicted by $p_1^2$, and conversely fewer $A_1 A_2$ individuals than predicted by $2 p_1 p_2$.  If our population is structured somehow such that $A_1$ sperm are more likely to meet with $A_1$ eggs, then we will have such a positive correlation of uniting gametes, and the resulting excess of homozygotes and deficiency of heterozygotes. 
@@ -282,8 +307,11 @@ g[outlier,]
 
 **Question:** Which SNP is returned?  By inserting the rs id into the UCSC genome browser (https://genome.ucsc.edu/), and following the links, find out what gene this SNP resides near.  The gene names should start with "SLC.."  What gene is it?
 
-**Question:** Carry out a literature search on this gene using the term "positive selection" and see what you find. It's thought the high $F$ value observed here is because natural selection led to a geographic clustering of alleles in this gene region.  Discuss with your partners why this might or might not make sense.   
+**Question:** Carry out a literature search on this gene using the term "positive selection" and see what you find. It's thought the high $F$ value observed here is because natural selection led to a geographic clustering of alleles in this gene region.  Discuss with your partners why this might or might not make sense.
 
+$$
+\nematode
+$$
 
 ### Discussion: The outlier region
 
@@ -304,6 +332,9 @@ In the `data` folder, we are including data files that you can explore to gain m
 
 **Follow-up activity**: Using the global data or the European data, analyze other chromosomes -- do you find other loci that show high $F$ values?
 
+$$
+\octopus
+$$
 
 ### References
 
