@@ -1,21 +1,38 @@
 ---
 title: "Defensive Programming in R"
-author: "Sarah Cobey"
 output:
-  html_document:
-    df_print: paged
   pdf_document:
-    highlight: kate
-    template: default
+    keep_tex: false
+    latex_engine: pdflatex
+    template: readable.tex
+author:
+  name: Sarah Cobey
+  affiliation: University of Chicago
+date: August 25, 2021
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: single
+graphics: yes
+endnote: no
+chapter: X
+thanks: "This document is included as part of the 'Defensive Programming in R' tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`."
+abstract: "**Goal:** Convince new and existing programmers of the
+  importance of defensive programming practices, introduce general
+  programming principles, and provide specific tips for programming and
+  debugging in `R`. **Audience:** Scientific researchers who use `R` and
+  believe the accuracy of their code and/or efficiency of their
+  programming could be improved."
 ---
 
-# Defensive Programming
+# Installation
 
-- **Goal:** Convince new and existing programmers of the importance of defensive programming practices, introduce general programming principles, and provide specific tips for programming and debugging in `R`.
-
-- **Audience:** Scientific researchers who use `R` and believe the accuracy of their code and/or efficiency of their programming could be improved.
-
-- **Installation:** For people who have completed the other tutorials, there is nothing new to install. For others starting fresh, install `R` and `RStudio`. To install `R`, follow instructions at [`cran.rstudio.com`](https://cran.rstudio.com/). Then install `Rstudio` following the instructions at [`https://www.rstudio.com/products/rstudio/download/`](https://www.rstudio.com/products/rstudio/download/). 
+For people who have completed the other tutorials, there is nothing
+new to install. For others starting fresh, install `R` and
+`RStudio`. To install `R`, follow instructions at
+[`cran.rstudio.com`](https://cran.rstudio.com/). Then install
+`Rstudio` following the instructions at
+[`https://www.rstudio.com/products/rstudio/download/`](https://www.rstudio.com/products/rstudio/download/).
 
 # Motivation
 
@@ -193,7 +210,11 @@ It's very useful to print values to screen when you are writing a function for t
 
 The problem with relying on `print()` is that it rapidly provides too much information for you to process, and hence errors can slip through.
 
-***Assertions***
+$$
+\ecoli
+$$
+
+### Assertions
 
 A more reliable way to catch errors is to use assertions. Assertions are automated tests embedded in the code. The built-in function for assertions in `R` is `stopifnot()`. It's very simple to use.
 
@@ -262,7 +283,7 @@ You could make a case that `warning()` should be `stop()`. In general, with defe
 
 There are many packages that produce more useful assertions and error messages than what is built into `R`. See, e.g., [`assertthat`](https://cran.r-project.org/web/packages/assertthat/index.html) and  [`testit`](https://cran.r-project.org/web/packages/testit/testit.pdf).
 
-***Exception handling***
+### Exception handling
 
 Warnings and errors are considered "exceptions." Sometimes it is useful to have an automated method to handle them. `R` has two main functions for this: `try()` allows you to continue executing a function after an error, and `tryCatch()` allows you to decide how to handle the exception.
 
@@ -331,7 +352,7 @@ ggplot(diamonds, aes(x = price, y = cut, fill = cut, height = ..density..)) +
 
 > You probably don't have `ggridges` installed yet, so you'll get an error. Use `tryCatch()` so that the package is installed if you do not have it and then loaded. 
 
-***Test all the scales!***
+### Test all the scales!
 
 It's important to consider multiple scales on which to test as you develop. We've focused on unit tests (testing small functions and steps) and testing inputs, but it is easy to have correct subroutines and incorrect results. For instance, we can be excellent at the distinct skills of toasting bread, buttering bread, and eating bread, but we will fail to enjoy buttered toast for breakfast if we don't pay attention to the order.
 
