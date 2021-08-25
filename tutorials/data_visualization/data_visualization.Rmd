@@ -8,7 +8,8 @@ output:
 author:
   name: Peter Carbonetto
   affiliation: University of Chicago
-date: July 30, 2021
+  date: August 25, 2021
+chapter: VII
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
@@ -19,7 +20,7 @@ thanks: "This document is included as part of the Data Visualization tutorial pa
 abstract: "In this lesson, you will use ggplot2 to create effective
   data visualizations. The ggplot2 package is a powerful plotting
   interface that extends the base plotting functions in R. The main
-  difference with Advanced Computing 1 is that we take a more in-depth
+  difference with Advanced Computing is that we take a more in-depth
   look at ggplot2 and plotting strategies."
 ---
 
@@ -84,6 +85,10 @@ with the rest of the tutorial materials.
 Our aim is to investigate the anecdotal claim that dogs representing
 breeds of small size (e.g., Chihuahuas) live longer than those from
 larger-sized breeds (e.g., Saint Bernards).
+
+$$
+\yeast
+$$
 
 Import the data into R
 ----------------------
@@ -336,6 +341,10 @@ resized—give it a try.
 print(p4)
 ```
 
+$$
+\fruitfly
+$$
+
 In-class exploration: a surprising subtlety with color
 ------------------------------------------------------
 
@@ -437,6 +446,10 @@ in ggplot2 is a variation of what we covered in this lesson.
 
 *Optional exercise:* Try varying point size instead of color. What
  problem do you run into, and what is the solution?
+
+$$
+\ecoli
+$$
 
 Programming challenge: Mapping the genetic basis of physiological and behavioral traits in outbred mice
 =========================================================================================================
@@ -713,6 +726,10 @@ consider that:
     Based on your plot, how would describe (in plain language) the
     relationship between the genotype and BMD?
 
+$$
+\macaque
+$$
+
 Notes
 =====
 
@@ -768,6 +785,10 @@ except where otherwise noted, the source code included in this
 repository are made available under the [OSI][osi]-approved
 [MIT license][mit-license]. For more details, see the `LICENSE.md`
 file included in the tutorial packet.
+
+$$
+\xenopus
+$$
 
 [ggplot2]: http://ggplot2.tidyverse.org
 [plotly]: https://plot.ly/r
