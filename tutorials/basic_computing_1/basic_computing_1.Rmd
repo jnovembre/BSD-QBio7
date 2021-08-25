@@ -1239,7 +1239,7 @@ or `chr6[ ,"nA1A1"]`).
 4. How many SNPs have less than 1% heterozygotes?
 
 $$
-\tetrahymena
+\ecoli
 $$
 
 [cran-rstudio]: https://cran.rstudio.com

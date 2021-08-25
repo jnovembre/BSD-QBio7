@@ -78,7 +78,7 @@ problems.
 [rstudio]: https://www.rstudio.com/products/rstudio/download/
 
 $$
-\squid
+\mouse
 $$
 
 ## Organize your research
@@ -585,3 +585,7 @@ directly use Git by running `git push` in the terminal.
 It is not uncommon for there to be a short delay before your website is
 available. One trick to try is to specify the exact page that you want at the
 end of the URL, e.g. add `/index.html` to the end of the URL.
+
+$$
+\squid
+$$
