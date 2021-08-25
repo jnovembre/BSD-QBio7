@@ -12,7 +12,7 @@ knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='figs/',
 
 # Population genetics workshop
 
-Instructor: **John Novembre**  
+Instructor: **Jeremy Berg**  
 
 ### Welcome 
 
@@ -20,13 +20,13 @@ This excercise is going to expose you to several basic ideas in probability and 
 
 ### The scenario
 
-As a biologist, you will learn what are the major patterns that are expected when the data you work with is clean. Using that expertise will save you from the mistake of misinterpreting error-prone data.   In population genetics, there are a number of patterns that we expect to see immediately in our datasets.  In this exercise you will explore one of those major patterns.  Rather than give it away --- let's begin some analysis and see what we find.  In the narative that follows, we'll refine our thinking as we go.  
+As a biologist, you will learn what are the major patterns that are expected when the data you work with is clean. Using that expertise will save you from the mistake of misinterpreting error-prone data. In population genetics, there are a number of patterns that we expect to see immediately in our datasets. In this exercise you will explore one of those major patterns.  Rather than give it away --- let's begin some analysis and see what we find.  In the narative that follows, we'll refine our thinking as we go.  
 
 
 ### Introductory terminology
 
-- Single-nucleotide polymorphism (SNP):  A nucleotide basepair that is *polymorphic* (i.e. it has multiple types or *alleles* in the population)
-- Allele:  A particular variant form of DNA  (e.g. A partciular SNP may have the "A-T" allele in one DNA copy and "C-G" in another; We typically define a reference strand of the DNA to read off of, and then denote the alleles according to the reference strand base - so for example, these might be called simply the "A" and "C" alleles.  In many cases we don't care about the precise base, so we might call these simply the $A_1$ and $A_2$ alleles, or the $A$ or $a$ alleles, or the 0 and 1 alleles.) 
+- Single-nucleotide polymorphism (SNP):  A nucleotide base-pair that is *polymorphic* (i.e. it has multiple types or *alleles* in the population)
+- Allele:  A particular variant form of DNA  (e.g. A particular SNP may have the "A-T" allele in one DNA copy and "C-G" in another; We typically define a reference strand of the DNA to read off of, and then denote the alleles according to the reference strand base - so for example, these might be called simply the "A" and "C" alleles.  In many cases we don't care about the precise base, so we might call these simply the $A_1$ and $A_2$ alleles, or the $A$ or $a$ alleles, or the 0 and 1 alleles.) 
 - Minor allele: The allele that is more rare in a population 
 - Major allele: The allele that is more common in a population 
 - Genotype: The set of alleles carried by an individual (E.g. AA, AC, CC; or AA, Aa, aa; or 0, 1, 2)
@@ -87,7 +87,7 @@ CHR        SNP A1 A2 nA1A1 nA1A2 nA2A2
 
 ### Calculate the number of observations at each locus
 
-Next compute the total number of observations by summing each of the three possible genotypes.  Here we use the `mutate` function from the `dplyr` library to do the addition and add a new column to the dataframe in one nice step.  (Note: You could also use the `colSums` function from the base R library).   
+Next compute the total number of observations by summing each of the three possible genotypes.  Here we use the `mutate` function from the `dplyr` library to do the addition and add a new column to the dataframe in one nice step. Note: You could also subset the `nA1A1`, `nA1A2` and `nA2A2` columns and then use the `rowSums` function from the base R library. If you have time, you could try both versions and check that they give the same result.
 ```{r}
 g <- mutate(g, nObs = nA1A1 + nA1A2 + nA2A2)
 ```
@@ -124,7 +124,7 @@ g <- mutate(g, p1 = p11 + 0.5*p12, p2 = p22 + 0.5*p12)
 
 Run `head(g)` again and confirm that `g` now has the extra columns for the genotype and allele frequencies. 
 
-And let's plot the frequency of the major allele (A2) vs the frequency of the minor allele (A1).  The `ggplot2` library has the ability to make "quick plots" with the command `qplot`.  Let's try it here: 
+And let's plot the frequency of the major allele (A2) vs the frequency of the minor allele (A1).  If we pass the `qplot` command two columns, it will plot them against one another.  Let's try it here: 
 ```{r}
 qplot(p1, p2, data=g)
 ```
@@ -137,7 +137,7 @@ The relationship exists because there are only two alleles - and so their propor
 
 ### Plotting genotype on allele frequencies
 
-Let's look at an initial plot of genotype vs allele frequencies.  We could use the base plotting functions, but the following uses the `ggplot2` commands.  These are a little trickier, but end up being very compact (we need fewer lines of code overall to achieve our desired plot). To use `ggplot2` commands effectively our data need to be what statisticans call "tidy" (in this case, that means with one row per point we will plot).  
+Let's look at an initial plot of genotype vs allele frequencies.  We could use the base plotting functions, but the following uses the `ggplot2` commands.  These are a little trickier, but end up being very compact (we need fewer lines of code overall to achieve our desired plot). To use `ggplot2` commands effectively our data need to be what statisticians call "tidy" (in this case, that means with one row per point we will plot).
 
 To do this, we first subset the data on the columns we'd like (using the `select` command and listing the set of columns we want), then we pass this (using the `%>%` operator) to the `melt` command which will reformat the data for us, and output it as `gTidy`:
 
@@ -154,7 +154,7 @@ Now let's look at the graph that we produced.  There is some scatter in the rela
 
 **Question:** What are approximate relationships between $p_{11}$ vs $p_1$, $p_{12}$ vs $p_1$, and $p_{22}$ vs $p_1$?  (Hint: These look like parabolas, which suggests are some very simple quadratic functions of $p_1$). 
 
-You might start to recognize that these are the classic relationships that are taught in  introductory biology courses.  If you recall, under assumptions that there is no mutation, no natural selection, infinite population size, no population substructure and no migration, then the genotype frequencies will take on a simple relationship with the allele frequencies.  That is: $p_{11}=p_1^2$, $p_{12}=2p_1(1-p_1)$ and $p_{22}=(1-p_1)^2$.  In your basic texts, they typicaly use $p$ and $q$ for the frequencies of allele 1 and 2, and present these *Hardy-Weinberg proportions* as: $p^2$,$2pq$, and $q^2$.  
+You might start to recognize that these are the classic relationships that are taught in introductory biology courses.  If you recall, under assumptions that there is no mutation, no natural selection, infinite population size, no population substructure and no migration, then the genotype frequencies will take on a simple relationship with the allele frequencies.  That is: $p_{11}=p_1^2$, $p_{12}=2p_1(1-p_1)$ and $p_{22}=(1-p_1)^2$.  In your basic texts, they typicaly use $p$ and $q$ for the frequencies of allele 1 and 2, and present these *Hardy-Weinberg proportions* as: $p^2$,$2pq$, and $q^2$.  
 
 Another way to think of the Hardy-Weinberg proportions is in the following way.  If the state of an allele ($A_1$ vs $A_2$) is *independent* within a genotype, then the probability of a particular genotype state (such as $A_1 A_1$) will be determined by taking the product of the alleles within it (so $p_{11}=p_1 p_1$ or $p_1^2$). 
 
@@ -198,7 +198,7 @@ Let's look at the p-values for the first SNPs:
 head(g$pval)
 ```
 
-How should we interpret these?  A p-value gives us the frequency at which the observed departure from expectations (or a more extreme departure) would occur if the null hypothesis (the SNP follows HW proportions) is true.  As an agreed upon standard (of the frequentist paradigm for statistical hypothesis testing), if the observation is relatively rare under the null (e.g. p-value < 5%), we reject the null hypothesis, and we would infer that the given SNP departs from Hardy-Weinberg expectations.  This is problematic here though.   The problem is that we are testing many, many SNPs (Use `dim(g)` to remind yourself how many rows/SNPs are in the dataset).  Even if the null is universally true, 5% of our SNPs would be expected to be rejected using the standard frequentist paradigm.  This is called the multiple testing problem.  As an example, if we have 20,000 SNPs, that all obey the null hypothesis, we would on average naively reject the null for ~1000 SNPs based on the p-values < 0.05.   
+How should we interpret these?  A p-value gives us the frequency at which the observed departure from expectations (or a more extreme departure) would occur if the null hypothesis that SNPs follows Hardy-Weinberg proportions is true.  As an agreed upon standard (of the frequentist paradigm for statistical hypothesis testing), if the observation is relatively rare under the null (e.g. p-value < 5%), we reject the null hypothesis, and we would infer that the given SNP departs from Hardy-Weinberg expectations.  This is problematic here though.   The problem is that we are testing many, many SNPs (Use `dim(g)` to remind yourself how many rows/SNPs are in the dataset).  Even if the null is universally true, we would expect to reject 5% of our SNPs using the standard frequentist paradigm.  This is called the multiple testing problem.  As an example, if we have 20,000 SNPs and the null hypothesis were true for all of them, on average we would naively reject the null for ~1000 SNPs based on the p-values < 0.05.   
 
 We clearly need some methods to deal with the "multiple testing problem".  Two frameworks are the Bonferroni approach and false-discovery-rate (FDR) approaches.  We will not say more about these here.  Instead, we will do two simple checks to see though if our data are globally consistent with the null.  
 
@@ -232,11 +232,11 @@ Most of the points fall below the y=x line.  That is, we see a systematic defici
 
 ### Discussion: Population subdivision and departures from Hardy-Weinberg expectations
 
-We might wonder why the departure from Hardy-Weinberg proportional is directional, in that, on average, we are seeing a deficiency of heterozygotes (and excess of homozygotes).  One enlightening way to understand this is by thinking about what Sewall Wright (a former eminent University of Chicago professor) called "the correlation of uniting gametes".  To produce an $A_1 A_1$ individual we need an $A_1$-bearing sperm and an $A_1$-bearing egg to unite.  If these events were independent of each other, we would expect $A_1 A_1$ individuals at the rate predicted by multiplying probabilites, that is, $p_1^2$ (an idea we introduced above).  However, what if uniting gametes are positively correlated, in that an $A_1$-bearing sperm is more likely to join with an $A_1$-bearing egg?  In this case we will have more $A_1 A_1$ individuals than predicted by $p_1^2$, and conversely fewer $A_1 A_2$ individuals than predicted by $2 p_1 p_2$.  If our population is structured somehow such that $A_1$ sperm are more likely to meet with $A_1$ eggs, then we will have such a positive correlation of uniting gametes, and the resulting excess of homozygotes and deficiency of heterozygotes. 
+We might wonder why the departure from Hardy-Weinberg proportional is directional, in that, on average, we are seeing a deficiency of heterozygotes (and excess of homozygotes).  One enlightening way to understand this is by thinking about what Sewall Wright (an eminent former University of Chicago professor) called "the correlation of uniting gametes".  To produce an $A_1 A_1$ individual we need an $A_1$-bearing sperm and an $A_1$-bearing egg to unite.  If these events were independent of each other, we would expect $A_1 A_1$ individuals at the rate predicted by multiplying probabilites, that is, $p_1^2$ (an idea we introduced above).  However, what if uniting gametes are positively correlated, in that an $A_1$-bearing sperm is more likely to join with an $A_1$-bearing egg?  In this case we will have more $A_1 A_1$ individuals than predicted by $p_1^2$, and conversely fewer $A_1 A_2$ individuals than predicted by $2 p_1 p_2$.  If our population is structured somehow such that $A_1$ sperm are more likely to meet with $A_1$ eggs, then we will have such a positive correlation of uniting gametes, and the resulting excess of homozygotes and deficiency of heterozygotes. 
 
 Given the HGDP data is from 52 sub-populations from around the globe, and alleles have some some probability of clustering within populations, a good working hypothesis for the deficiency of heterozygotes in this dataset is the presence of some population structure.  
 
-While statistically significant, the population structure appears to be subtle in absolute terms --- based on our plots, we have seen the genotype proportions are not wildly off from HW proportions. 
+While statistically significant, the population structure appears to be subtle in absolute terms --- based on our plots, we have seen the genotype proportions are not wildly off from Hardy-Weinberg proportions. 
 
 **Question:** As an exercise, compute the average deficiency of heterozygotes relative to the expectated proportion.  This is the average of $$ \frac{2 p_1 (1-p_1)-p_{12}}{2p_1(1-p_1)}$$  What is this number for this data-set?  A common "rule-of-thumb" for this deficiency in a global sample of humans is approximately 10\%.  Do you find this to be true from the data? 
 
@@ -249,9 +249,9 @@ Just ~10% difference between expected and observed seems pretty remarkable given
 
 ### Finding specific loci that show large departure from Hardy-Weinberg proportions
 
-Now, let's ask if we can find any loci that are wild departures from HW proportions.  These might be loci that have erroneous genotypes, or loci that cluster geographically in dramatic ways (such that they have few heterozygotes relative to expectations).
+Now, let's ask if we can find any loci that are wild departures from Hardy-Weinberg proportions.  These might be loci that have erroneous genotypes, or loci that cluster geographically in dramatic ways (such that they have few heterozygotes relative to expectations).
 
-To find these loci, we'll compute the same relative deficiency you computed above, but let's look at it per SNP.  This number is referred to as $F$ by Sewall Wright and has connections directly to correlation coefficients (advanced exercise: Try to work this out!).  If we assume there is no inbreeding within populations, this number is an estimator of $F_{ST}$ (a quantity that appears often in population genetics).
+To find these loci, we'll compute the same relative deficiency you computed above, but let's look at it per SNP.  This number is referred to as $F$ by Sewall Wright and has connections directly to correlation coefficients (advanced exercise: Try to work this out!).  If we assume there is no inbreeding within populations, this number is an estimator of $F_{ST}$ (a quantity that appears often in population genetics as a measure of the degree of structure between populations).
 
 Let's add this value to our dataframe and plot how it's value changes across the chromosome from one end to another:
 
@@ -262,7 +262,7 @@ plot(g$F, xlab = "SNP number")
 
 There are a few interesting SNPS that show either a very high or low $F$ value. 
 
-Now, here's a trick.  When a high or low $F$ value is due to genotyping error, it likely only effects a single SNP.  However, when there is some population genetic force acting on a region of the genome, it likely effects multiple SNPs in the region.  So let's try to take a local average in a sliding window of SNPs across the genome, computing an average $F$ over every 5 consecutive SNPs (in real data analysis we might use 100kb or 0.1cM windows). 
+Now, here's a trick.  When a high or low $F$ value is due to genotyping error, it likely only effects a single SNP.  However, when there is some population genetic force acting on a region of the genome, it likely effects multiple SNPs in the region.  So let's try to take a local average in a sliding window of SNPs across the genome, computing an average $F$ over every 5 consecutive SNPs (in real data analysis we might use 100 kilobase or 0.1 centiMorgan windows). 
 
 The `stats::filter` command below calls the `filter` function from the `stats` library.  The code instructs the function to take 5 values centered on a focal SNP, weighting them each by 1/5 and then taking the sum.  In this way it produces a local average in a sliding window of 5 SNPs.  Let's define the `movingavg` function and then make a plot of its values:
 ```{r}
