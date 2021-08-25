@@ -17,7 +17,7 @@ spacing: single
 graphics: yes
 endnote: no
 chapter: VIII
-thanks: "This document is included as part of the 'Reproducible research with workflowr' tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`"
+thanks: "This document is included as part of the 'Reproducible research with workflowr' tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`."
 
 abstract: "The [workflowr][] R package makes it easier for you to
   organize, reproduce, and share your data analyses. This short tutorial
