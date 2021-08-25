@@ -8,13 +8,14 @@ output:
 author:
   name: Stefano Allesina and Peter Carbonetto
   affiliation: University of Chicago
-date: August 12, 2021
+date: August 23, 2021
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
 spacing: single
 graphics: yes
 endnote: no
+chapter: I
 thanks: "This document is included as part of the Basic Computing 1---Introduction to R tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer and Matthew Stephens for their guidance."
 abstract: "The aim of this workshop is to introduce `R` and `RStudio`,
   and show how it can be used to analyze data in an automated,
@@ -90,6 +91,10 @@ Here we introduce `R`, which can help you write simple programs to
 analyze your data, perform statistical analysis, and draw beautiful
 figures.
 
+$$
+\mouse
+$$
+
 What is R?
 ==========
 
@@ -141,6 +146,10 @@ structures* (objects). This is not accidental---analysis of data is
 central to `R`. Appreciating this emphasis on data can help you
 navigate `R`, particularly if you are more familiar with procedural
 programming langauges such as C++.
+
+$$
+\fruitfly
+$$
 
 RStudio
 =======
@@ -209,6 +218,10 @@ through analysis of a small data set. This will involve:
 5. Manipulating the data.
 
 6. Automating the analysis.
+
+$$
+\athaliana
+$$
 
 In-class activity: Collaborative data collection
 ================================================
@@ -719,6 +732,10 @@ $$
 \framebox[\textwidth]{\rule{0pt}{3em}}
 $$
 
+$$
+\zebrafish
+$$
+
 Manipulating data
 =================
 
@@ -778,6 +795,10 @@ laptops2$id <- seq(1, n)
 laptops2$MB <- 1000 * laptops2$GB
 ```
 
+$$
+\nematode
+$$
+
 Building a data frame
 =====================
 
@@ -797,6 +818,10 @@ frame:
 ```{r build-laptops-2}
 dat <- data.frame(os = x, cpu = y)
 ```
+
+$$
+\octopus
+$$
 
 In-class activity: what is a "factor"?
 ======================================
@@ -884,6 +909,10 @@ load("basic_computing_1.RData")
 **Question:** What is the difference between **File > Save
 As** and **Session > Save Workspace As**? 
 
+$$
+\butterfly
+$$
+
 Group activity: Analysis of laptops data
 ========================================
 
@@ -910,6 +939,11 @@ file somewhere on your computer. Give your script a memorable name
 such as `analyze_laptops_data.R`. Also, a few comments (these are
 lines starting with "`#`") explaining in plain language what the code
 does. We will use Etherpad to share our programs.
+
+
+$$
+\spinosaurus
+$$
 
 Programming Challenge
 =====================
@@ -982,6 +1016,10 @@ each unique pair of occurrences in `x` and `y`.
 `tail`, `tapply`, `unique`, `which` and `which.max`.
 
 + Save your solution code for each exercise in a file.
+
+$$
+\xenopus
+$$
 
 Additional topics
 =================
@@ -1148,6 +1186,10 @@ could do `laptops[1,1] <- NA`. (You might want to make these changes
 to a copy of the data frame instead.) Then run `summary(laptops)`. How
 are the missing data reported in the summary?
 
+$$
+\tiktaalik
+$$
+
 Optional group activity: Analyzing genetic data
 ===============================================
 
@@ -1195,6 +1237,10 @@ or `chr6[ ,"nA1A1"]`).
 3. How many SNPs have no heterozygotes (*i.e.*, no "A1A2")?
 
 4. How many SNPs have less than 1% heterozygotes?
+
+$$
+\ecoli
+$$
 
 [cran-rstudio]: https://cran.rstudio.com
 [rstudio-download]: https://www.rstudio.com/products/rstudio/download

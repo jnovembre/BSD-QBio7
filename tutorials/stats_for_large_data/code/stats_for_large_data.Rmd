@@ -1,34 +1,28 @@
 ---
 title: "Statistics for a data rich world---some explorations"
-author:
-  affiliation: University of Chicago
-  name: Stefano Allesina (adapted by Lin Chen)
-date: "Aug 2020"
 output:
   pdf_document:
-    keep_tex: no
+    keep_tex: false
     latex_engine: pdflatex
-    template: style/readable.tex
-
-  html_document:
-    df_print: paged
+    template: readable.tex
+author:
+  name: Stefano Allesina (adapted by Lin Chen)
+  affiliation: University of Chicago
+  date: August 25, 2021
+chapter: IX
+geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
-geometry: margin=1in
+spacing: single
 graphics: yes
 endnote: no
-spacing: single
-thanks: 'This document is included as part of the Statistics for large data sets packet for the U Chicago BSD qBio6 boot camp, @MBL, 2020. **Current version**: 2020; **Corresponding author**: sallesina@uchicago.edu. Adapted by Lin Chen (lchen@health.bsd.uchicago.edu).'
-abstract: |2-
-   
-   **Goal:** More and more often we need to analyze large and complex data sets. However, the statistical methods we've been taught in college have evolved in a data-poor world. Modern biology requires new tools, which can cope with the new questions and methods that arise in a data-rich world. Here we are going to discuss problems that often arise in the analysis of large data sets. We're going to review hypothesis testing (and what happens when we have many hypotheses) and discuss model selection. We're going to see the effects of selective reporting and p-hacking, and how they contribute to the *reproducibility crisis* in the sciences.
-   **Audience:** Biologists with some programming background.
+thanks: "This document is included as part of the 'Statistics for a data rich  world' tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`. **Corresponding author**: sallesina@uchicago.edu. Adapted by Lin Chen (lchen@health.bsd.uchicago.edu)."
+abstract: "**Goal:** More and more often we need to analyze large and complex data sets. However, the statistical methods we've been taught in college have evolved in a data-poor world. Modern biology requires new tools, which can cope with the new questions and methods that arise in a data-rich world. Here we are going to discuss problems that often arise in the analysis of large data sets. We're going to review hypothesis testing (and what happens when we have many hypotheses) and discuss model selection. We're going to see the effects of selective reporting and p-hacking, and how they contribute to the *reproducibility crisis* in the sciences. **Audience:** Biologists with some programming background."
 ---
-
+   
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(echo=TRUE, eval=FALSE, warning=FALSE, message=FALSE)
 ```
-
 
 # I. Review of hypothesis testing
 Statistics is the science of collecting and analyzing data from samples in order to estimate and make inference regarding the parameters in the population. A sample is a smaller and random subset of the population of interest and the sample is collected to represent the population. Hypothesis testing is a major component of statistical inference. 
@@ -98,7 +92,7 @@ When testing an hypothesis, we can make two types of errors:
 - **Type I error**: reject $H_0$ when it is in fact true. Also known as false positive.
 - **Type II error**: fail to reject $H_0$ when in fact it is not true. Also known as false negative.
 
-We call $\alpha$ the probability of making a type I error (or type I error rate), and $\beta$ as type II error rate. And power is in fact $1-\beta$. We can calculate the p-value based on the data and compare the p-value with the significance threshold $\alpha$. The p-value quantifies how strongly the data contradicts the null hypothesis, and if $p< \alpha$, we reject the null hypothesis.  Type I and Type II error rates are inversely related. In choosing a significance level for a test, you are actually deciding how much you want to risk committing a type I error — rejecting the null hypothesis when it is. The more stringent $\alpha$ is (0.01 versus 0.05) in controlling type I error rate, the less likely you would make a rejection decision and consequently the power will be reduced too.  
+We call $\alpha$ the probability of making a type I error (or type I error rate), and $\beta$ as type II error rate. And power is in fact $1-\beta$. We can calculate the p-value based on the data and compare the p-value with the significance threshold $\alpha$. The p-value quantifies how strongly the data contradicts the null hypothesis, and if $p< \alpha$, we reject the null hypothesis.  Type I and Type II error rates are inversely related. In choosing a significance level for a test, you are actually deciding how much you want to risk committing a type I error — rejecting the null hypothesis when it is. The more stringent $\alpha$ is (0.01 versus 0.05) in controlling type I error rate, the less likely you would make a rejection decision and consequently the power will be reduced too.
 
 # The distribution of p-values
 
@@ -130,7 +124,12 @@ hist(pvalues, xlab = "p-value", main = paste0("p =  ", p), freq = FALSE)
 abline(h = 1, col = "red", lty = 2)
 ```
 
-## II. The challenges with p-values
+$$
+\nematode
+$$
+
+# II. The challenges with p-values
+
 ## Selective reporting
 
 Articles reporting positive results are easier to publish than those containing negative results. Authors might have little incentive to publish negative results, which could go directly into the file-drawer. 
@@ -159,7 +158,12 @@ This problem is due to a number of factors, and addressing it will likely be one
 ## Exercise: p-hacking
 Go to [goo.gl/a3UOEF](https://goo.gl/a3UOEF) and try your hand at p-hacking, showing that your favorite party is good (bad) for the economy.
 
-## III. Multiple comparisons (also known as multiple testing)
+$$
+\zebrafish
+$$
+
+# III. Multiple comparisons (also known as multiple testing)
+
 The problem of multiple comparisons arises when we perform multiple statistical tests. Since each test is subject to some small chance of producing a false positive result, when jointly considering many many tests, the chances of producing some false positive findings are much higher. 
 
 Suppose we perform our coin tossing exercise, flipping 1000 coins 1000 times each. For each coin, we determine whether our data differs significantly from what expected by contrasting our p-value with a significance level $\alpha = 0.05$. 
@@ -293,7 +297,12 @@ BH <- get_table(data, adjust = "BH", 0.05)
 print(BH) 
 ```
 
+$$
+\marmoset
+$$
+
 # FDR and q-values
+
 Inspired by the need for controlling for FDR in genomics, Storey and Tibshirani (PNAS 2003) have proposed the idea of a q-value, measuring the probability that a feature that we deemed significant turns out to be not significant after all. 
 
 One uses p-values to control for the false positive rate (# false positive / total test): when determining significant p-values we control for the rate at which null features in the data are called significant. The False Discovery Rate (# false positive / # signficant test), on the other hand, measures the rate at which results that are deemed significant are truly null. While setting $PCER = 0.05$ we are stating that about 5% of the truly null features will be called significant, an $FDR = 0.05$ means that among the features that are called significant, about 5% will turn out to be null. 
@@ -333,10 +342,10 @@ table((qobj$pvalues < 0.05) & (qobj$qvalues < 0.05), data$H0)
 Note that the estimation of FDR is unstable if the demoniator (# significant test) is expected to be small. Therefore, you may notice that FDR was widely used in detecting differentially expressed genes in diseased versus normal samples where the expected number of non-null tests is large. In contast, in GWAS, researchers use the Bonferroni-adjusted p-value threshold of $5\times 10^{-8}$ to declare significance.
 
 
-
 # IV. Linear regression, logistic regression, and model selection
 
 # Linear regression
+
 In statistics, linear regression is an approach to model the linear relationship between one response variable (or dependent variable) and one or more explanatory variables (or independent variables, or predictor). If there is only one exlanatory variable, it is  called simple linear regression. If the linear regression involves more than one explanatory variable, it is a multiple linear regression. 
 
 
@@ -410,8 +419,12 @@ BIC(model2)
 
 Here in this simple example, AIC and BIC agree with each other, and the simpler model is favored. 
 
+$$
+\octopus
+$$
 
 # Logistic regression
+
 Logistic regression is often used to model the nonlinear relationship (modeled by a logistic function) between a binary response variable and a linear combination of explantory variables.  When the outcome is binary, for example pass/fail, win/lose, alive/dead, yes/no, one would consider a logistic regression. It can be extended to model several classes of a categorical variable as response. 
 
 
@@ -477,7 +490,12 @@ model_journal_yr <- glm(ReviewerAgreed~Journal:I(Year-2003),
 #summary(model_journal_yr)
 ```
 
+$$
+\tetrahymena
+$$
+
 ## Likelihoods
+
 In `R`, you can extract the log-likelihood from a model object calling the function `logLik`
 
 ```{r}
@@ -570,6 +588,10 @@ print(mylogLik)
 
 Cross validation supports the choice of the more complex model here.
 
+$$
+\spinosaurus
+$$
+
 ## Other approaches
 
 Bayesian models are gaining much traction in biology. The advantage of these models is that you can get a posterior distribution for the parameter values, reducing the need for p-values and AIC. The downside is that fitting these models is computationally much more expensive (you have to find a distribution of values instead of a single value). 
@@ -598,9 +620,11 @@ When in doubt, remember the (in)famous paper in Nature by Tatem et al. 2004, whi
 
 Prediction for population outside the current data is prophecy.
 
+$$
+\butterfly
+$$
 
 # V. Programming Challenge
-
 
 ## P-hacking COVID-19
 

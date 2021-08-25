@@ -1,23 +1,32 @@
 ---
-output: 
-  pdf_document: 
-    highlight: tango
-editor_options: 
-  chunk_output_type: console
+title: RNA-seq data analysis workshop
+output:
+  pdf_document:
+    keep_tex: false
+    latex_engine: pdflatex
+    template: readable.tex
+author:
+  name: "Mengjie Chen (with Kate Farris)"
+  affiliation: University of Chicago
+date: August 25, 2021
+chapter: XI
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: single
+graphics: yes
+endnote: no
+thanks: "This document is included as part of the 'RNA-seq data analysis' workshop packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`."
+abstract: "This tutorial is going to walk you through basic RNA-seq
+  data analysis using R. We will touch upon topics including quality
+  control, differential expression analysis and downstream functional
+  analysis."
 ---
+
 ```{r global_options, include=FALSE}
 knitr::opts_chunk$set(fig.width=6, fig.height=4, fig.path='Figs/',
                       echo=TRUE, eval=FALSE, warning=FALSE, message=FALSE)
 ```
-
-# RNA-seq data analysis workshop
-
-Instructor: **Mengjie Chen**  
-Course Assistant: **Kate Farris**  
-
-## Welcome 
-
-This tutorial is going to walk you through basic RNA-seq data analysis using R. We will touch upon topics including quality control, differential expression analysis and downstream functional analysis.
 
 ## Introduction
 
@@ -77,7 +86,9 @@ colData(se) <- DataFrame(sample.table)
 
 **Exercise**: Can you check what is in the object `exons.by.gene`? Can you check what is in the object `se`?
 
-
+$$
+\macaque
+$$
 
 ## Step 2: Visualizing sample-sample distances
 
@@ -120,6 +131,10 @@ library(DESeq2)
 dds <- DESeqDataSet(airway, design= ~ cell + dex)
 head(dds)
 ```
+
+$$
+\tetrahymena
+$$
 
 ##  Step 4: Normalization for sequencing depth
 
@@ -191,6 +206,10 @@ Make a scatterplot of log normalized counts against each other.
 plot(log.norm.counts[,1:2], cex=.1)
 ```
 
+$$
+\fruitfly
+$$
+
 ##  Step 5: Stabilizing count variance
 
 We will use a sophisticated transformation to address the variance for low counts. It uses the variance model for count data to shrink together the log-transformed counts for genes with very low counts. For genes with medium and high counts, the `rlog` is very close to `log2`. 
@@ -249,7 +268,7 @@ We will now perform differential gene expression on the counts, to try to find g
 
 We will use an overdispersed Poisson distribution – called the negative binomial – to model the raw counts in the count matrix. The model will include the size factors into account to adjust for sequencing depth. The formula will look like:
 
-$$K_{ij} \propto \text{NB} (s_{ij}q_{ij}, \alpha_i)$$
+$$K_{ij} \propto \mathrm{NB}(s_{ij}q_{ij}, \alpha_i)$$
 where $K_{ij}$ is a single raw count in our count table, $s_{ij}$ is a size factor or more generally a normalization factor, $q_{ij}$ is proportional to gene expression (what we want to model with our design variables), and $\alpha_i$ is a dispersion parameter.
 
 For the negative binomial, the variance parameter is called disperison, and it links the mean value with the expected variance. The reason we see more dispersion than in a Poisson is mostly due to changes in the proportions of genes across biological replicates – which we would expect due to natural differences in gene expression.
@@ -388,10 +407,11 @@ pheatmap(mat, annotation_col=df)
 
 **Exercise**:  Can you plot histogram for p-values? With what you have learned from previous lectures, is the histrogram with a desired shape? Can you make a heatmap based on top 50 genes? What do you observe? 
 
+$$
+\squid
+$$
 
-
-
-## 5) Getting alternate annotations
+### 5) Getting alternate annotations
 
 We can then check the annotation of these highly significant genes:
 
@@ -422,7 +442,7 @@ ego <- enrichGO(gene          = annoList$ENSEMBL,
 head(ego)
 ```
 
-## 6) Looking up different results tables
+### 6) Looking up different results tables
 The `contrast` argument allows users to specify what results table should be built. See the help and examples in `?results` for more details:
 
 ```{r}
@@ -465,8 +485,6 @@ ddsTC <- DESeq(ddsTC, test="LRT", reduced = ~ strain + minute)
 
 **Exercise**: Can you visualize results from the above analysis? Can you perform functional analysis? Can you propose other tests on this dataset?
 
-
-
 ## Acknowledgement
 This workshop contains online materials written by Rafael Irizarry and Michael Love. 
 
@@ -477,14 +495,6 @@ Here is the session information.
 devtools::session_info()
 ```
 
-
-
-
-
-
-
-
-
-
-
-
+$$
+\spinosaurus
+$$

@@ -1,32 +1,45 @@
 ---
-title: "Reproducible research with workflowr"
+title: Reproducible research with workflowr
 subtitle: "workflowr version `r utils::packageVersion('workflowr')`"
-author: "John Blischak and Matthew Stephens"
-date: "`r Sys.Date()`"
+date: August 25, 2021
 output:
-  rmarkdown::pdf_document: default
-  rmarkdown::html_vignette:
-    toc: true
-    toc_depth: 2
+  pdf_document:
+    keep_tex: false
+    latex_engine: pdflatex
+    template: readable.tex
+author:
+  name: John Blischak and Matthew Stephens
+  affiliation: University of Chicago
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+spacing: single
+graphics: yes
+endnote: no
+chapter: VIII
+thanks: "This document is included as part of the 'Reproducible research with workflowr' tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`."
+
+abstract: "The [workflowr][] R package makes it easier for you to
+  organize, reproduce, and share your data analyses. This short tutorial
+  will introduce you to the workflowr framework. You will create a
+   workflowr project that implements a small data analysis in R, and by
+  the end you will have a working website that you can use to share your
+  work. Please follow the [setup instructions](#setup) in the next
+  section prior to the workshop."
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = FALSE, fig.align = "center")
+knitr::opts_chunk$set(comment = "#",collapse = TRUE,eval = FALSE,
+                      fig.align = "center")
 ```
 
 ## Introduction
 
-The [workflowr][] R package makes it easier for you to organize, reproduce, and
-share your data analyses. This short tutorial will introduce you to the
-workflowr framework. You will create a workflowr project that implements a small
-data analysis in R, and by the end you will have a working website that you can
-use to share your work. Please follow the [setup instructions](#setup) in the next section prior to the workshop.
-
-Workflowr combines literate programming with [R Markdown][rmd] and version
-control with [Git][git] to generate a website containing time-stamped,
-versioned, and documented results. By the end of this tutorial, you will have a
-website hosted on [GitHub Pages][gh-pages] that contains the results of a
-reproducible statistical analysis.
+Workflowr combines literate programming with [R Markdown][rmd] and
+version control with [Git][git] to generate a website containing
+time-stamped, versioned, and documented results. By the end of this
+tutorial, you will have a website hosted on [GitHub Pages][gh-pages]
+that contains the results of a reproducible statistical analysis.
 
 [gh-pages]: https://pages.github.com/
 [git]: https://git-scm.com/
@@ -63,6 +76,10 @@ problems.
 [gh]: https://github.com
 [r]: https://cran.r-project.org
 [rstudio]: https://www.rstudio.com/products/rstudio/download/
+
+$$
+\mouse
+$$
 
 ## Organize your research
 
@@ -262,8 +279,8 @@ using the shortcut `Ctrl`/`CMD`+`Enter`.
     ```
     ````
 
-    Note: if you copy and paste this chunk, make sure to remove any spaces
-    before each of the backticks (` ``` `) so that they will be correctly
+    Note: if you copy and paste this chunk, make sure to remove any
+    spaces before each of the backticks so that they will be correctly
     recognized as indicating the beginning and end of a code chunk.
 
 1. Next create some boxplots to explore the data. Copy the code chunk below and
@@ -338,6 +355,10 @@ analysis, click on the workflowr button at the top and select the "Checks" tab.
 You can see the value of the seed that was set using `set.seed()` before the
 code was executed. 
 
+$$
+\nematode
+$$
+
 ## Publish your analysis!
 
 You should also notice that workflowr is still giving you a warning: it says you have "uncommitted changes" in your .Rmd file. The term "commit" is a term from version control: it basically means
@@ -401,6 +422,10 @@ depend on the version of the data we use....
 1. Navigate to check html files in the `docs` directory, you should find that they all have a green light and no warnings.
 
 1. And run `wflow_status()` again to confirm all is OK. Everything is published!
+
+$$
+\marmoset
+$$
 
 ## Share your results
 
@@ -522,6 +547,10 @@ To learn more about workflowr, you can read the following vignettes:
 * [Sharing common code across analyses](wflow-07-common-code.html)
 * [Alternative strategies for deploying workflowr websites](wflow-08-deploy.html)
 
+$$
+\butterfly
+$$
+
 ## Troubleshooting
 
 ### I don't see the workflowr project as an available RStudio Project Type. {#missing-template}
@@ -556,3 +585,7 @@ directly use Git by running `git push` in the terminal.
 It is not uncommon for there to be a short delay before your website is
 available. One trick to try is to specify the exact page that you want at the
 end of the URL, e.g. add `/index.html` to the end of the URL.
+
+$$
+\squid
+$$
