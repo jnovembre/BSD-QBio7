@@ -65,17 +65,17 @@ output:
 **10:00-10:30**       Coffee break                                           
 **10:30-12:00**       Statistics for a data rich world - L. Chen (BSLC 008)  
 **12:00-1:30**        Lunch                                                  
-**1:30-3:00**         Workshop - Immunology - Khan (BSLC 109)                
+**1:30-3:00**         Workshop - Transcriptomics - M. Chen (BSLC 008)        
 **3:00-3:30**         Coffee break                                           
-**3:30-5:00**         Workshop - Immunology - Khan (BSLC 109)                
+**3:30-5:00**         Workshop - Transcriptomics - M. Chen (BSLC 008)        
 ------------------    -------------------------------------------------------
 
 ### Wednesday, September 15 
 
 ------------------    -------------------------------------------------------
-**8:30-10:00**        Workshop - Transcriptomics - M. Chen (BSLC 008)        
+**8:30-10:00**        Workshop - Immunology - Khan (BSLC 109)                
 **10:00-10:30**       Coffee break                                           
-**10:30-12:00**       Workshop - Transcriptomics - M. Chen (BSLC 008)        
+**10:30-12:00**       Workshop - Immunology - Khan (BSLC 109)                
 **12:00-1:30**        Lunch                                                  
 **1:30-3:00**         Workshop - Population genetics - Berg (BSLC 205)       
 **3:00-3:30**         Coffee break                                           

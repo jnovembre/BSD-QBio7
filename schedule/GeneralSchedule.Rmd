@@ -78,33 +78,33 @@ output:
                       Defensive programming - Cobey                (*C.jacchus M.musculus O.bimaculoides P.polytes*)
                       Statistics for a data rich world - L. Chen   (*A.thaliana D.rerio T.thermophila X.laevis*)
 **12:00-1:30**        Lunch                                       
-**1:30-3:00**         Workshop - Immunology - Khan                 (*D.melanogaster D.rerio O.bimaculoides T.thermophila*)
-                      Workshop - Population genetics - Berg        (*A.thaliana M.musculus P.polytes T.roseae*)
-                      Workshop - Transcriptomics - M. Chen         (*C.elegans C.jacchus S.aegyptiacus X.laevis*)
+**1:30-3:00**         Workshop - Immunology - Khan                 (*A.thaliana C.elegans D.rerio X.laevis*)
+                      Workshop - Population genetics - Berg        (*D.melanogaster M.musculus S.aegyptiacus T.roseae*)
+                      Workshop - Transcriptomics - M. Chen         (*C.jacchus O.bimaculoides P.polytes T.thermophila*)
 **3:00-3:30**         Coffee break                                
-**3:30-5:00**         Workshop - Immunology - Khan                 (*D.melanogaster D.rerio O.bimaculoides T.thermophila*)
-                      Workshop - Population genetics - Berg        (*A.thaliana M.musculus P.polytes T.roseae*)
-                      Workshop - Transcriptomics - M. Chen         (*C.elegans C.jacchus S.aegyptiacus X.laevis*)
+**3:30-5:00**         Workshop - Immunology - Khan                 (*A.thaliana C.elegans D.rerio X.laevis*)
+                      Workshop - Population genetics - Berg        (*D.melanogaster M.musculus S.aegyptiacus T.roseae*)
+                      Workshop - Transcriptomics - M. Chen         (*C.jacchus O.bimaculoides P.polytes T.thermophila*)
 ------------------    --------------------------------------------
 
 ### Wednesday, September 15 
 
 ------------------    --------------------------------------------
-**8:30-10:00**        Workshop - Immunology - Khan                 (*C.jacchus S.aegyptiacus T.roseae*)
-                      Workshop - Population genetics - Berg        (*D.melanogaster D.rerio O.bimaculoides X.laevis*)
-                      Workshop - Transcriptomics - M. Chen         (*A.thaliana C.elegans M.musculus P.polytes T.thermophila*)
+**8:30-10:00**        Workshop - Immunology - Khan                 (*C.jacchus D.melanogaster T.roseae T.thermophila*)
+                      Workshop - Population genetics - Berg        (*A.thaliana C.elegans O.bimaculoides P.polytes*)
+                      Workshop - Transcriptomics - M. Chen         (*D.rerio M.musculus S.aegyptiacus X.laevis*)
 **10:00-10:30**       Coffee break                                
-**10:30-12:00**       Workshop - Immunology - Khan                 (*C.jacchus S.aegyptiacus T.roseae*)
-                      Workshop - Population genetics - Berg        (*D.melanogaster D.rerio O.bimaculoides X.laevis*)
-                      Workshop - Transcriptomics - M. Chen         (*A.thaliana C.elegans M.musculus P.polytes T.thermophila*)
+**10:30-12:00**       Workshop - Immunology - Khan                 (*C.jacchus D.melanogaster T.roseae T.thermophila*)
+                      Workshop - Population genetics - Berg        (*A.thaliana C.elegans O.bimaculoides P.polytes*)
+                      Workshop - Transcriptomics - M. Chen         (*D.rerio M.musculus S.aegyptiacus X.laevis*)
 **12:00-1:30**        Lunch                                       
-**1:30-3:00**         Workshop - Immunology - Khan                 (*A.thaliana M.musculus P.polytes X.laevis*)
-                      Workshop - Population genetics - Berg        (*C.elegans C.jacchus S.aegyptiacus T.thermophila*)
-                      Workshop - Transcriptomics - M. Chen         (*D.melanogaster D.rerio O.bimaculoides T.roseae*)
+**1:30-3:00**         Workshop - Immunology - Khan                 (*M.musculus O.bimaculoides P.polytes S.aegyptiacus*)
+                      Workshop - Population genetics - Berg        (*C.jacchus D.rerio T.thermophila X.laevis*)
+                      Workshop - Transcriptomics - M. Chen         (*A.thaliana C.elegans D.melanogaster T.roseae*)
 **3:00-3:30**         Coffee break                                
-**3:30-5:00**         Workshop - Immunology - Khan                 (*A.thaliana M.musculus P.polytes X.laevis*)
-                      Workshop - Population genetics - Berg        (*C.elegans C.jacchus S.aegyptiacus T.thermophila*)
-                      Workshop - Transcriptomics - M. Chen         (*D.melanogaster D.rerio O.bimaculoides T.roseae*)
+**3:30-5:00**         Workshop - Immunology - Khan                 (*M.musculus O.bimaculoides P.polytes S.aegyptiacus*)
+                      Workshop - Population genetics - Berg        (*C.jacchus D.rerio T.thermophila X.laevis*)
+                      Workshop - Transcriptomics - M. Chen         (*A.thaliana C.elegans D.melanogaster T.roseae*)
 **5:00-5:30**         Wrap-up                                     
 **5:30-7:00**         Dinner                                      
 ------------------    --------------------------------------------

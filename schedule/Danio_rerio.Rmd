@@ -73,13 +73,13 @@ output:
 ### Wednesday, September 15 
 
 ------------------    -------------------------------------------------------
-**8:30-10:00**        Workshop - Population genetics - Berg (BSLC 205)       
+**8:30-10:00**        Workshop - Transcriptomics - M. Chen (BSLC 008)        
 **10:00-10:30**       Coffee break                                           
-**10:30-12:00**       Workshop - Population genetics - Berg (BSLC 205)       
+**10:30-12:00**       Workshop - Transcriptomics - M. Chen (BSLC 008)        
 **12:00-1:30**        Lunch                                                  
-**1:30-3:00**         Workshop - Transcriptomics - M. Chen (BSLC 008)        
+**1:30-3:00**         Workshop - Population genetics - Berg (BSLC 205)       
 **3:00-3:30**         Coffee break                                           
-**3:30-5:00**         Workshop - Transcriptomics - M. Chen (BSLC 008)        
+**3:30-5:00**         Workshop - Population genetics - Berg (BSLC 205)       
 **5:00-5:30**         Wrap-up (BSLC 109)                                     
 **5:30-7:00**         Dinner                                                 
 ------------------    -------------------------------------------------------
