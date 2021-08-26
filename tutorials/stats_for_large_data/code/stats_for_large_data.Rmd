@@ -25,9 +25,9 @@ knitr::opts_chunk$set(echo=TRUE, eval=FALSE, warning=FALSE, message=FALSE)
 ```
 
 # I. Review of hypothesis testing
-Statistics is the science of collecting and analyzing data from samples in order to estimate and make inference regarding the parameters in the population. A sample is a smaller and random subset of the population of interest and the sample is collected to represent the population. Hypothesis testing is a major component of statistical inference. 
+Statistics is the science of collecting and analyzing data from samples in order to estimate and make inference regarding the the population.  A census data is often not feasible, and also not necessary. A sample is a smaller and random subset of the target population and the sample is collected to represent the population. Hypothesis testing is a major component of statistical inference. 
 
-The basic idea of hypothesis testing is the following: we have devised an hypothesis on our system, which we call $H_1$ (the "alternative hypothesis"). We have collected our data, and we would like to test whether the data are consistent (or inconsistent) with the so-called "null-hypothesis" ($H_0$), which is associated with a contradiction to the hypothesis we would like to prove. 
+The basic idea of hypothesis testing is the following: we have devised an hypothesis on our system, which we call $H_1$ (the "alternative hypothesis"). We have collected our data, and we would like to test whether the data are consistent (or inconsistent) with the so-called "null hypothesis" ($H_0$). The null hypothesis is a contradiction to the alternative hypothesis. 
 
 The simplest example is that of a bent coin: my friend Aiden likes to bet on a coin toss with people, and he often chooses head and wins. I suspect that he has a bent coin in favor of head  ($H_1$: the coin is bent). We therefore toss the coin several times and check whether the number of heads we observe is consistent with the null hypothesis of a fair coin ($H_0$: the coin is a fair coin). 
 
@@ -624,42 +624,39 @@ $$
 \butterfly
 $$
 
+
 # V. Programming Challenge
+
 
 ## P-hacking COVID-19
 
-To show firsthand how p-hacking and overfitting are possible, we want you to show how these practices can lead to completely inane results.
+To show firsthand how p-hacking and overfitting are possible, we want you to show how these practices can lead to completely nonsensical results.
 
-You can download today's data on the geographic distribution of COVID-19 cases worldwide from the source below. The data is updated daily and contains the lastest publicly available data on COVID-19 by country.The data report the "cumulative number for 14 days of COVID-19 cases per 100k individuals" for each country or territory. There are also several other covariates in the data set. 
+You can download a complete list of data on COVID-19 (coronavirus) by Our World in Data (https://ourworldindata.org/coronavirus). The data is updated daily and contains the lastest publicly available data on COVID-19 by country and by date. The data report the total cases, new cases, total deaths, new deaths, and hospitalization data of 233 countries and regions. Note that you are not expected to analyze the entire data. You may choose one or a few countries, or select one or some dates for analysis or for comparison.
 
-The challenge is to build an analysis pipeline that produces a "significant" p-value for a relationship between COVID-19 cases and another variable, where the relationship can't possibly be causal. Prepare an Rmarkdown document with the results. At the end of the document write a paragraph to explain your "findings". Argue for an underlying non-statistical explanation for your group's fake result, and/or critique your statistcal approach and why your group got an apparently significant p-value.
+The challenge is to build an analysis pipeline that produces a "significant" p-value for a relationship between COVID-19 cases and another variable, where the relationship is non-sensical, cannot possibly be causal, or could be argued either way. You may even simulate a fake variable as your key variable of interest. Prepare an Rmarkdown document with the results. At the end of the document write a paragraph to explain your "findings". As if you were in a debate team, pick on a subjective conclusion, and "cherry-pick" partial data to support your claim. Provide a non-statistical explanation for your group's fake result, and/or critique your statistcal approach and why your group got an apparently significant p-value.
 
-Hint: At certain dates in the pandemic, COVID-19 cases counts had a statistically significant (but not a real causal) relationship with the alphabetic position of the first letter of the country's name.  You might also consider other meaningless aspects of country name (e.g., vowels versus consonants, letters before M versus after). 
+As an example, below on a particular date (02/26/2020), I found a positive relationship between handwashing facilities and new cases in Asia countries.
 
-Useful sample code: 
+Some sample code: 
 ```{r, message=FALSE}
 
-# read data
-library(utils)
-
+library(dplyr)
 #read the Dataset sheet into “R”. The dataset will be called "data".
-data <- read.csv("https://opendata.ecdc.europa.eu/covid19/casedistribution/csv", 
-                 na.strings = "", fileEncoding = "UTF-8-BOM")
+data <- read.csv("https://covid.ourworldindata.org/data/owid-covid-data.csv",na.strings = "",header=T)
 
-# the code below shows how you may recode the country name's 
-# first letter to a numeric alphabetic position.
-data1 <- data[(data$dateRep=="11/08/2020"), ]  
-CountryAb <- as.integer(as.factor(substr(data1$countriesAndTerritories,1,1)))
 
-# build a linear model for the relationship between 
-# Cumulative_number_for_14_days_of_COVID.19_cases_per_100000 and 
-# the alphabetic position of country name's first letter.
-model1<- lm(Cumulative_number_for_14_days_of_COVID.19_cases_per_100000~CountryAb, 
-            data=data1)
-summary(model1)
-# On 8/11/2020, we did not find a significant relationship 
-# between alphabetic order of country name and COVID-19 cases. 
-# But what if we keep looking at other dates? 
+res <- NULL
+for (i in 1:length(unique(data$date))){
+  data1 <- data[which((data$date==unique(data$date)[i])&(data$continent=="Asia")),]
+  data1 <- data1 %>% select("iso_code","date","new_cases", "handwashing_facilities")
+  if (sum(rowSums(!is.na(data1[,3:4]))==2)>=10){
+  res <- rbind(res, c(unique(data$date)[i],cor.test(data1[,3],data1[,4])$estimate, cor.test(data1[,3],data1[,4])$p.value))
+}}
+
+res[which((as.numeric(res[,2])>0)& (as.numeric(res[,3])<=0.05)),]
+
+
+
 ```
-
 
