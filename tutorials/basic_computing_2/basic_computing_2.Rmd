@@ -73,9 +73,9 @@ also reduce the potential for mistakes, particularly when the analysis
 involves complex calculations.
 
 In the first activity, we will examine short code examples ("code
-snippets") that BSD graduate students have written and used in their
-research. Our aim will be to turn these code snippets into functions
-so that they can be easily reused.
+snippets") that current and former BSD graduate students have used in
+their research. Our aim will be to rework these code snippets as
+functions that they can be easily reused in our R data analyses.
 
 In the second activity, we will re-examine data from University of
 Chicago Professor Tetsuya Fujita's influential study of the 1974
