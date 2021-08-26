@@ -4,19 +4,19 @@ output:
   pdf_document:
     keep_tex: false
     latex_engine: pdflatex
-    template: style/readable.tex
+    template: readable.tex
 author:
-  name: "Stefano Allesina & Graham Smith"
+  name: Stefano Allesina and Graham Smith
   affiliation: University of Chicago
-date: Aug 2020
+date: August 26, 2021
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
 spacing: single
 graphics: yes
 endnote: no
-thanks: "This document is included as part of the Advanced Computing I packet for the U Chicago BSD qBio6 boot camp 2020. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: sallesina@uchicago.edu."
-
+chapter: 3--J1
+thanks: "This document is included as part of the Advanced Computing tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: sallesina@uchicago.edu."
 ---
 
 ```{r setup, echo=FALSE, eval=TRUE}
