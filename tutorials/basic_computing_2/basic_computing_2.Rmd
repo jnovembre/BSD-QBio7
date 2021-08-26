@@ -8,7 +8,8 @@ output:
 author:
   name: Stefano Allesina and Peter Carbonetto
   affiliation: University of Chicago
-date: August 13, 2020
+date: August 25, 2021
+chapter: II
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
@@ -18,7 +19,7 @@ endnote: no
 header-includes:
   - \usepackage[T1]{fontenc}
   - \usepackage{textcomp}
-thanks: "This document is included as part of the Basic Computing 2---Introduction to R tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2020. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer and Matthew Stephens for their guidance."
+thanks: "This document is included as part of the Basic Computing 2---Introduction to R tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer and Matthew Stephens for their guidance."
 abstract: "The aims of this workshop are to: (1) learn how to install,
   load and use the many of the freely available `R` packages; (2)
   illustrate how to write user-defined functions, and how to organize
@@ -29,7 +30,7 @@ abstract: "The aims of this workshop are to: (1) learn how to install,
 
 ```{r knitr-opts, include=FALSE}
 knitr::opts_chunk$set(comment = "#",collapse = TRUE,results = "hide",
-                      fig.keep = "none",eval=FALSE)
+                      fig.keep = "none")
 ```
 
 Setup
@@ -37,203 +38,57 @@ Setup
 
 To follow the examples below, you will first need to install the
 **knitr** and **readr** packages. You will also use the **MASS**
-package for statistics (this package is already included with `R`).
+package (this package is already included with `R`), and **ggplot2**
+for the in-class activities.
 
-Introductory activity: Exploring simple steps for creating better code
-======================================================================
+In-class activities: Exploring simple steps for more effective code
+===================================================================
 
-Much of Basic Computing 2---as well as some of the other qBio
-tutorials---is about the *practice* of coding in R. Using R
-effectively for your research projects builds on Good Practice;
-without it, your analyses will quickly become unmanageable, you will
-become discouraged, and your progress will be slow.
+You will often find that it isn't long into a data
+analysis---sometimes after writing as little as 10--20 lines of
+code---when you encounter problems with your code. Many problems can
+be avoided with Good Practices. Examples of Good Practices include:
 
-It may seem premature to talk about practice when we have only just
-started learning about R (and particularly so if you are new to
-programming!). But you will find that it isn't long into a
-project---sometimes with as little as 40--60 lines of code---when you
-need strategies to help you break out of a jam.
+1. Writing your code so that it is self-contained---that is, it
+   includes all the steps needed to re-run the analysis.
 
-Many researchers, of course, manage to push through without adopting
-Good Practices. This is because they are creative and are able to
-perservere. But perserverance and creativity are finite resources that
-we would rather you use elsewhere!
+2. Writing the steps in a logical order.
 
-Incorporating Good Practices into your work is not something that will
-happen overnight; it will take time and experience to develop your
-practice. Our aim here, in this short activity, and in other parts of
-Basic Computing 2, is to give you a head start---in particular, to
-show you that *simple steps* can go a long way to improving your
-coding practice.
+3. Using variable names that are helpful.
 
-We begin this short activity with a *script* implementing the initial
-steps in an exploratory analysis of tornado data from the National
-Weather Service. This script is `tornadoes.R`. For convenience,
-I've added it here:
+4. Including short, high-level comments that explain what the code
+   does.
 
-```{r tornadoes-1, code=readLines("tornadoes.R"), message=FALSE}
-```
+One particularly common frustration arises from fiddling with your
+code, re-running it to produce a new result, then repeating this
+"revise-and-rerun" loop. In addition to being tedious, you will also
+find that this revise-and-rerun loop will make it difficult to keep
+track of which code produced the most interesting result.
 
-If you run this code---say, by copying and pasting the code into the
-Console, or by running `source("tornadoes.R")`---you should see a plot
-showing the number of tornado events that were recorded on each day of
-2011. You should also see a large "spike" in tornadoes at the end of
-April.
+We will explore some *simple but effective steps* for avoiding this
+frustration. One powerful idea is to identify the most useful bit
+of code, then package this bit of code into a *function* that can be
+quickly reused. This can not only help to streamline the analysis, but
+also reduce the potential for mistakes, particularly when the analysis
+involves complex calculations.
 
-This code is quite a bit more complicated than any of the code we've
-seen before in Basic Computing 1. We will not spend much time trying
-to understand it. Before moving on, however, this is a good
-opportunity to point out some of the Good Practices that are
-implemented in this script:
+In the first activity, we will examine short code examples ("code
+snippets") that BSD graduate students have written and used in their
+research. Our aim will be to turn these code snippets into functions
+so that they can be easily reused.
 
-1. It is self-contained---that is, it is a complete script that
-   includes steps such as loading the necessary packages.
+In the second activity, we will re-examine data from University of
+Chicago Professor Tetsuya Fujita's influential study of the 1974
+"Jumbo tornado outbreak." Our aim will be to apply the practices we
+learned in the first activity toward a more complex analysis, then
+efficiently repeat the same complex calculations across multiple data
+sets.
 
-2. The steps are written in a logical order, starting with loading
-   the data, and ending with a result.
+*Additional details about these activities will be given in class.*
 
-3. The variable names are helpful.
-
-4. Short, high-level comments explain what the code does.
-
-My hope is that all these elements become part of your coding
-practice over time.
-
-This script only implements the very first step in the analysis. There
-is still much we would like to learn, including the tornadoes'
-severity, and their geographic distribution. For example, are these
-patterns repeated in the state of New York? Using `subset`, and
-copying some of the code above, we can investigate this question:
-
-```{r tornadoes-2}
-temp   <- subset(tornadoes,STATE == "NEW YORK")
-counts <- as.numeric(table(cut(temp$dayofyear, breaks)))
-plot(breaks[-1], counts, type = "l", xaxt = "n")
-axis(1, cex.axis = 0.7, at = first_days, labels = months)
-```
-
-This exploration will quickly become tedious if we do it in this way:
-fiddling with the code, and re-running it to produce a new result. You
-will also find that it makes difficult to keep track of the code that
-produced the most interesting insights.
-
-Fortunately, there is a better way: we can *package* this code into a
-function. Let's begin with the part of the code that does the
-calculation of the daily counts (to be precise, it counts the number
-of events in 3-day intervals):
-
-```{r tornadoes-3}
-count_events <- function (dat) {
-  x <- as.numeric(table(cut(dat$dayofyear, breaks)))
-  return(x)
-}
-```
-
-On its own, this code doesn't do anything except create the new
-function, `count_events`. You need to invoke it to do something
-useful:
-
-```{r tornadoes-4}
-dat    <- subset(tornadoes, STATE == "ILLINOIS")
-counts <- count_events(dat)
-print(counts)
-```
-
-We can now use this function anywhere we choose. For example, suppose
-we wanted to see whether these same patterns hold up in the more
-severe tornadoes (as measured by the "Fujita scale"). The
-`count_events` function allows us to implement this multi-step
-calculation in a one-liner:
-
-```{r tornadoes-5}
-counts <- count_events(subset(tornadoes, TOR_F_SCALE == "EF2"))
-print(counts)
-```
-
-Before turning to the plots, let's take a moment to reflect on the
-immediate benefits of having created the `count_events` function:
-
-1. It simplifies any parts of our analysis that make use of the this
-   calculation.
-
-2. It reduces the potential to make mistakes because we have wrapped these
-   tricky calculations inside a function with a memorable name;
-
-3. Avoids repetition of complicated code.
-
-4. Packaging this code in a function suggests its *generality*
-   (nothing in this code is specific to tornado events), and thereby
-   promotes code reuse.
-
-To further streamline our analysis, let's wrap the complicated
-plotting code inside a function:
-
-```{r tornadoes-6}
-plot_events <- function (dat) {
-  x <- count_events(dat)
-  plot(breaks[-1], x, type = "l", xaxt = "n")
-  axis(1, cex.axis = 0.7, at = first_days, labels = months)
-}
-```
-
-Let's try out this new function:
-
-```{r tornadoes-7}
-plot_events(tornadoes)
-plot_events(subset(tornadoes, TOR_F_SCALE == "EF2"))
-plot_events(subset(tornadoes, STATE == "ALABAMA"))
-```
-
-Note that this function does not output anything; the important action
-is to draw something to the screen.
-
-Observe that we are making good use of our `count_events`
-function. Splitting the analysis into two functions seems logical; we
-have separated the calculation of the counts from plotting of the
-counts.
-
-Again, this function is general---there is nothing about this code
-that is specific to tornadoes. So we may be able to reuse this
-function for similar analyses (e.g., studying annual flooding
-patterns).
-
-Incorporating the above improvements (and a couple other small
-improvements), our new analysis script looks like this (see also
-`tornadoes_better.R`):
-
-```{r tornadoes-8, code=readLines("tornadoes_better.R"), message=FALSE}
-```
-
-As we continue to develop our analysis, functions can also reduce
-effort of *revising code*; for example, to change the colour of the
-lines in all the plots, only one small change needs to be made to the
-code inside `plot_events`.
-
-Designing functions to improve your code is very much an "art" that
-you will learn as you gain experience. But don't get hung up on
-finding the best way to organize your code into functions---it starts
-with recognizing the most obvious opportunities, and over time you
-will refine your practice.
-
-Group activity: Compare 2011 and 2019 tornado patterns
-------------------------------------------------------
-
-Create a copy of `tornadoes_better.R` and call it
-`tornadoes_generic.R`. Modify the code in `tornadoes_generic.R` so
-that it can be used to analyze either the 2011 or 2019 data. The first
-few lines of your script should look like this:
-
-```{r tornadoes-9, message=FALSE}
-year <- 2011
-library(readr)
-storms <- read_csv(paste0("storms",year,".csv.gz"),guess_max = 5000)
-```
-
-*Hint:* `paste` may be useful.
-
-Run `tornadoes_generic.R` on the 2011 data, then re-run on the 2019
-data by changing the first line to `year <- 2019`. What is the most
-striking difference in the 2011 and 2019 tornado patterns?
+$$
+\zebrafish
+$$
 
 A brief tour of packages, functions, loops, and other topics
 ============================================================
@@ -322,6 +177,10 @@ Now the data set is available, and you can load it:
 data(bacteria)
 head(bacteria)
 ```
+
+$$
+\squid
+$$
 
 Random numbers
 --------------
@@ -446,6 +305,10 @@ When developing and testing your function, remember this rule:
 your environment (unless you happen to already have an object named
 `y`).
 
+$$
+\athaliana
+$$
+
 Vectorization
 -------------
 
@@ -533,7 +396,7 @@ Using this pseudocode as a guide, write an improved `normpdf`
 function:
 
 $$
-\framebox[\textwidth]{\rule{0pt}{16em}}
+\framebox[\textwidth]{\rule{0pt}{10em}}
 $$
 
 Activity: The quadratic formula
@@ -557,14 +420,14 @@ Before writing any R code, first describe your `solvequad` function
 without worrying about R syntax---that is, using pseudocode:
 
 $$
-\framebox[\textwidth]{\rule{0pt}{16em}}
+\framebox[\textwidth]{\rule{0pt}{10em}}
 $$
 
 Guided by your pseudocode, write the R code for your `solvequad`
 function:
 
 $$
-\framebox[\textwidth]{\rule{0pt}{16em}}
+\framebox[\textwidth]{\rule{0pt}{10em}}
 $$
 
 After creating `solvequad`, check that it does the right thing by
@@ -658,56 +521,12 @@ while (TRUE) {
 **Question:** Above, we ran three different loops, we found that each
 of them accomplished the same thing. Is one approach better? Why?
 
-Programming challenge
-=====================
+$$
+\fruitfly
+$$
 
-Instructions
-------------
-
-You will work with your group to solve the exercises below. When you
-have found the solutions, go to 
-[`https://jnovembre.github.io/BSD-QBio6`](https://jnovembre.github.io/BSD-QBio6)
-and follow the link "Submit solution to challenge 2" to submit your
-answer.
-At the end of the bootcamp, the group with the highest number of
-correct solutions will be declared the winner. If you need extra time,
-you can work with your group during free time or in the breaks in the
-schedule.
-
-Google Flu Trends
------------------
-
-Google Flu started strong, with a paper in *Nature* (Ginsberg *et al*,
-2009, [`doi:10.1038/nature07634`][ginsberg-2009]) showing that, using
-data on Web search engine queries, one could predict the number of
-physician visits for influenza-like symptoms.  Over time, the quality
-of predictions degraded considerably, requiring many adjustments to
-the model. Now defunct, Google Flu Trends has been proposed as a
-poster child of "Big Data hubris" (Lanzer *et al*, *Science*, 2014,
-[`doi:10.1126/science.1248506`][lanzer-2014]).  In the folder containing
-the Basic Computing 2 tutorial materials, you will find the data used
-by Preis and Moat in their 2014 paper
-([`doi:10.1098/rsos.140095`][preis-moat-2014]) to show that, after
-accounting for some additional historical data, Google Flu Trends are
-correlated with outpatient visits due to influenza-like illnesses.
-
-1. Read the data using function `read.csv`, and plot the number of
-   weekly outpatient visits versus the Google Flu Trends estimates.
-
-2. Calculate the (Pearson's) correlation using the `cor` function.
-
-3. The data span 2010--2013. In August 2013, Google Flu changed their
-   algorithm. Did this lead to improvements? Compare the data from
-   August and September 2013 with the same months in 2010, 2011
-   and 2012. For each, calculate the correlation, and see whether the
-   correlation is higher for 2013.
-
-**Hint:** You will need to extract the year from a string for each
-row. This can be done using `substr(gf$WeekCommencing, 1, 4)`, in
-which `gf` is the data frame containing the Google Flu data.
-
-Case study: Do shorter titles lead to more citations? (optional)
-================================================================
+Case study: Do shorter titles lead to more citations?
+=====================================================
 
 To keep learning about `R`, we study the following question:
 
@@ -1177,8 +996,12 @@ on papers from the *American Journal of Human Genetics*. Would any
 changes need to be made to your R code above to run it on the four
 citation data sets?
 
-Creating computational notebooks using R Markdown (optional)
-============================================================
+$$
+\mouse
+$$
+
+Creating computational notebooks using R Markdown
+=================================================
 
 > *Let us change our traditional attitude to the construction of
 > programs: instead of imagining that our main task is to instruct a
@@ -1273,6 +1096,54 @@ for your paper, give R Markdown a try!
 
 You can find inspiration in this Boot Camp; the materials for Basic
 and Advanced Computing were written in R Markdown.
+
+Programming challenge
+=====================
+
+Instructions
+------------
+
+You will work with your group to solve the exercises below. When you
+have found the solutions, go to 
+[`https://jnovembre.github.io/BSD-QBio7`](https://jnovembre.github.io/BSD-QBio7)
+and follow the link "Submit solution to challenge 2" to submit your
+answer.
+At the end of the bootcamp, the group with the highest number of
+correct solutions will be declared the winner. If you need extra time,
+you can work with your group during free time or in the breaks in the
+schedule.
+
+Google Flu Trends
+-----------------
+
+Google Flu started strong, with a paper in *Nature* (Ginsberg *et al*,
+2009, [`doi:10.1038/nature07634`][ginsberg-2009]) showing that, using
+data on Web search engine queries, one could predict the number of
+physician visits for influenza-like symptoms.  Over time, the quality
+of predictions degraded considerably, requiring many adjustments to
+the model. Now defunct, Google Flu Trends has been proposed as a
+poster child of "Big Data hubris" (Lanzer *et al*, *Science*, 2014,
+[`doi:10.1126/science.1248506`][lanzer-2014]).  In the folder containing
+the Basic Computing 2 tutorial materials, you will find the data used
+by Preis and Moat in their 2014 paper
+([`doi:10.1098/rsos.140095`][preis-moat-2014]) to show that, after
+accounting for some additional historical data, Google Flu Trends are
+correlated with outpatient visits due to influenza-like illnesses.
+
+1. Read the data using function `read.csv`, and plot the number of
+   weekly outpatient visits versus the Google Flu Trends estimates.
+
+2. Calculate the (Pearson's) correlation using the `cor` function.
+
+3. The data span 2010--2013. In August 2013, Google Flu changed their
+   algorithm. Did this lead to improvements? Compare the data from
+   August and September 2013 with the same months in 2010, 2011
+   and 2012. For each, calculate the correlation, and see whether the
+   correlation is higher for 2013.
+
+**Hint:** You will need to extract the year from a string for each
+row. This can be done using `substr(gf$WeekCommencing, 1, 4)`, in
+which `gf` is the data frame containing the Google Flu data.
 
 [rseek]: http://rseek.org
 [cran-search]: http://search.r-project.org
