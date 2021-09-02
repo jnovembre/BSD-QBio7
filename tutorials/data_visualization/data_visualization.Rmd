@@ -9,7 +9,7 @@ author:
   name: Peter Carbonetto
   affiliation: University of Chicago
   date: August 26, 2021
-chapter: VII
+chapter: 4
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
@@ -45,7 +45,7 @@ plots in R.
 
 ```{r knitr-options, echo=FALSE}
 knitr::opts_chunk$set(results = "hide",collapse = TRUE,fig.height = 3,
-                      fig.width = 3,fig.align = "center",fig.show = "hide")
+                      fig.width = 3,fig.align = "center",fig.show = 'hide')
 ```
 
 Setup

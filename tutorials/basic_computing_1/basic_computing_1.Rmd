@@ -15,7 +15,7 @@ fontsize: 11pt
 spacing: single
 graphics: yes
 endnote: no
-chapter: I
+chapter: 1
 thanks: "This document is included as part of the Basic Computing 1---Introduction to R tutorial packet for the BSD qBio Bootcamp, University of Chicago, 2021. **Current version**: `r format(Sys.time(), '%B %d, %Y')`; **Corresponding author**: pcarbo@uchicago.edu. Thanks to John Novembre, Stephanie Palmer and Matthew Stephens for their guidance."
 abstract: "The aim of this workshop is to introduce `R` and `RStudio`,
   and show how it can be used to analyze data in an automated,

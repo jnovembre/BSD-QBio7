@@ -9,7 +9,7 @@ author:
   name: Stefano Allesina (adapted by Lin Chen)
   affiliation: University of Chicago
   date: August 25, 2021
-chapter: IX
+chapter: 6
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
@@ -643,7 +643,8 @@ Some sample code:
 
 library(dplyr)
 #read the Dataset sheet into “R”. The dataset will be called "data".
-data <- read.csv("https://covid.ourworldindata.org/data/owid-covid-data.csv",na.strings = "",header=T)
+data <- read.csv("https://covid.ourworldindata.org/data/owid-covid-data.csv",
+     na.strings = "",header=T)
 
 
 res <- NULL
@@ -651,7 +652,9 @@ for (i in 1:length(unique(data$date))){
   data1 <- data[which((data$date==unique(data$date)[i])&(data$continent=="Asia")),]
   data1 <- data1 %>% select("iso_code","date","new_cases", "handwashing_facilities")
   if (sum(rowSums(!is.na(data1[,3:4]))==2)>=10){
-  res <- rbind(res, c(unique(data$date)[i],cor.test(data1[,3],data1[,4])$estimate, cor.test(data1[,3],data1[,4])$p.value))
+  res <- rbind(res, c(unique(data$date)[i],
+      cor.test(data1[,3],data1[,4])$estimate,
+      cor.test(data1[,3],data1[,4])$p.value))
 }}
 
 res[which((as.numeric(res[,2])>0)& (as.numeric(res[,3])<=0.05)),]

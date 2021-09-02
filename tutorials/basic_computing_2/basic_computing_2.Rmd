@@ -9,7 +9,7 @@ author:
   name: Stefano Allesina and Peter Carbonetto
   affiliation: University of Chicago
 date: August 25, 2021
-chapter: II
+chapter: 2
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
