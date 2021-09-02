@@ -106,7 +106,7 @@ We will download the repository using GitKraken (you can alternatively use comma
 3. "Clone a Repo" (in File menu)
 4. "Clone with URL"
 5. "Where to Clone:" Browse to the folder in which you want to keep your repository (your home directory is fine)
-6. "URL": Paste: `https://github.com/jnovembre/BSD-QBio6.git`
+6. "URL": Paste: `https://github.com/jnovembre/BSD-QBio7.git`
 7. "Clone the Repo!" (this step will take a few minutes)
 
 Now if you go to the folder you chose in step 5, you'll see the repository!
