@@ -61,7 +61,7 @@ To accommodate the diverse background of our students, we have created two track
 
 ## Preparing your laptop
 
-We are going to start working right away. Therefore, it is very important you **prepare your laptop** for the boot camp before the first session on Monday. This will take you about one hour, so schedule accordingly.
+We are going to start working right away. Therefore, it is very important you **prepare your laptop** for the boot camp before the first session on Thursday. This will take you about one hour, so schedule accordingly.
 
 You will work on your laptop all day long. **If you don't have a laptop, please contact the course directors immediately**.
 
