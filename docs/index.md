@@ -2,7 +2,7 @@
 
 This page contains important information about the [Seventh BSD-qBio Boot Camp](https://biosciences.uchicago.edu/content/mbl-bootcamp), which will be held online from Sept 9-15, 2021.
 
-More that 100 incoming graduate students from the different programs in the [Division of Biological Sciences](https://biosciences.uchicago.edu) at the [University of Chicago](http://www.uchicago.edu) will participate.
+More than 100 incoming graduate students from the different programs in the [Division of Biological Sciences](https://biosciences.uchicago.edu) at the [University of Chicago](http://www.uchicago.edu) will participate.
 
 On this page, you find the instructions on how to **prepare your laptop** so that it's ready for the boot camp.
 
