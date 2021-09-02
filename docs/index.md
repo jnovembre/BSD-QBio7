@@ -28,11 +28,14 @@ For any issue/question/comment, please contact the course directors via discord:
 
 
 ## TAs
-* Zepeng (Phoenix) Mu
 * Katie Aracena
+* Jennifer Blanc
+* Katie Dixon
+* Sophia Horigan
 * Dylan Sosa
 * Kate Farris
-*Neil Sheth
+* Matt Schechter
+* Suraj (Neil) Sheth
 
 ## Schedule
 
