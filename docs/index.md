@@ -1,6 +1,6 @@
 ## Welcome
 
-This page contains important information about the [Sixth BSD-qBio Boot Camp](https://biosciences.uchicago.edu/content/mbl-bootcamp), which will be held online from Sept 13-18, 2020.
+This page contains important information about the [Seventh BSD-qBio Boot Camp](https://biosciences.uchicago.edu/content/mbl-bootcamp), which will be held online from Sept 9-15, 2021.
 
 More that 100 incoming graduate students from the different programs in the [Division of Biological Sciences](https://biosciences.uchicago.edu) at the [University of Chicago](http://www.uchicago.edu) will participate.
 
@@ -15,35 +15,32 @@ You can see the **schedule** of the boot camp, and find the contact information 
 For any issue/question/comment, please contact the course directors via discord:
 
 *   [John Novembre](mailto:jnovembre@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](http://jnpopgen.org/))
+*   [Sarah Cobey](mailto:cobey@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](https://cobeylab.uchicago.edu))
 *   [Victoria Prince](mailto:vprince@uchicago.edu?Subject=Help%20BSD%20QBio) ([webpage](https://voices.uchicago.edu/princelab/))
 
 ## Instructors
-* Stefano Allesina  ([webpage](http://allesinalab.uchicago.edu/))
+* Jeremy Berg ([webpage](http://www.jjbpopgen.org))
 * Peter Carbonetto   ([webpage](https://pcarbo.github.io/))
 * Lin Chen ([webpage](http://home.uchicago.edu/lchen11/))
 * Mengjie Chen  ([webpage](http://www.mengjiechen.com))
 * Aly Khan ([webpage](https://ttic.uchicago.edu/~aakhan/))
 * Samantha Riesenfield ([webpage](https://pme.uchicago.edu/group/riesenfeld-group))
-* Matthew Stephens ([webpage](https://stephenslab.uchicago.edu))
+
 
 ## TAs
-* Jill Rosenberg
-* Graham Smith 
-* Zepeng (Phoenix) Mu 
-* Katie Aracena 
-* Brendan MacNabb
-* Dylan Sosa 
-* Evan Kiefl 
+* Zepeng (Phoenix) Mu
+* Katie Aracena
+* Dylan Sosa
 * Kate Farris
-* Neil Sheth 
+*Neil Sheth
 
 ## Schedule
 
 The qBio boot camp will be, as the name implies, quite intense. We are going to have **Tutorials** (short primers to a certain topic) and **Workshops** (discipline-specific, hands-on activities).
 
-Here's the [general schedule](https://github.com/jnovembre/BSD-QBio6/raw/master/schedule/GeneralSchedule.pdf).
+Here's the [general schedule](https://github.com/jnovembre/BSD-QBio7/raw/master/schedule/GeneralSchedule.pdf).
 
-You can also browse the schedule [by group](https://github.com/jnovembre/BSD-QBio6/tree/master/schedule).
+You can also browse the schedule [by group](https://github.com/jnovembre/BSD-QBio7/tree/master/schedule).
 
 ## Computing tutorials
 
@@ -54,11 +51,9 @@ To accommodate the diverse background of our students, we have created two track
 
 **You will need to decide which track's sessions to attend on Day 1 of the Bootcamp**.  After Day 1, you will move throught the material in teams with mixed skill levels.  **Choose which track to join for Day 1 by consulting the lecture materials and making sure that the content is at the right level for you**:
 
-*   Basic Computing I ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_1/basic_computing_1.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_1/basic_computing_1.pdf))
-*   Basic Computing II ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_2/basic_computing_2.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio6/raw/master/tutorials/basic_computing_2/basic_computing_2.pdf))
-*   Advanced Computing: Read the challenges here: ([Data Jujutsu](https://github.com/jnovembre/BSD-QBio6/tree/master/tutorials/advanced_computing/Jujutsu))
-
-**Special preparation for Advanced Computing:** You should work through the Advanced Computing preparatory material before the session begins. [Link to preparatory material](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/advanced_computing/tutorial/advanced_computing.pdf)
+*   Basic Computing I ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_1/basic_computing_1.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio7/raw/master/tutorials/basic_computing_1/basic_computing_1.pdf))
+*   Basic Computing II ([web](https://github.com/jnovembre/BSD-QBio6/blob/master/tutorials/basic_computing_2/basic_computing_2.Rmd), [pdf](https://github.com/jnovembre/BSD-QBio7/raw/master/tutorials/basic_computing_2/basic_computing_2.pdf))
+*   Advanced Computing: **Special preparation for Advanced Computing:** You should work through the Advanced Computing preparatory material before the session begins. [Link to preparatory material](https://github.com/jnovembre/BSD-QBio7/blob/master/tutorials/advanced_computing/tutorial/advanced_computing.pdf)
 
 
 ## Preparing your laptop
