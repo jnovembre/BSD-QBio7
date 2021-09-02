@@ -9,7 +9,7 @@ author:
   name: "Mengjie Chen (with Kate Farris)"
   affiliation: University of Chicago
 date: August 25, 2021
-chapter: XI
+chapter: 7
 geometry: margin=1in
 fontfamily: mathpazo
 fontsize: 11pt
