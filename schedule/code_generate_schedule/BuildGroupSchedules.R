@@ -159,7 +159,7 @@ for (my_day in sort(unique(activities$Day))){
       cat(paste0(ldesc, "    ", rdesc))
       # Prep to add group names
       namegroups <- sort(as.vector(as.data.frame(tmp %>% filter(ShortDesc == all_act_tmp[i]) %>% select(Short))[,1]))
-      if (length(namegroups) == 12){ # Add group names in parens or a carriage return
+      if (length(namegroups) >4){ # Add group names in parens or a carriage return
         cat("\n")
       } else {
         cat(paste0(" (*", paste0(namegroups, collapse = " "),"*)\n"))
