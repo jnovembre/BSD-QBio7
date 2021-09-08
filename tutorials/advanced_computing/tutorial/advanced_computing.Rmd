@@ -581,3 +581,21 @@ $$
 $$
 
 
+## Exercise in groups
+
+The file `data/202107-divvy-tripdata.csv` contains a list of all the Divvy bike rides taken in Chicago in July 2021. Form small groups and work on the following exercises:
+
+- **Ride map** write a function that takes as input a calendar date (YYYY-MM-DD), and draws a map of all the starting points of rides. Mark a point for each occurrence using the starting latitude and longitude `start_lat` and `start_lng`. Set the `alpha` to something like 0.1 to show brighter colors in areas with many occurrences.  (Optional: Add a feature that draws a line from the starting location to end location)
+
+- **Busiest hour and day of the week** on which day of the week do most rides to start? On which hour of the day do most rides start? (Hint: use the package `lubridate` to work with days, dates, time; Extract day of the week from `started_at` using the `wday` function)
+
+- **Daily usage profile for the month**: Plot the number of rides per day across the 31 days of the month. 
+
+- **Ride length classes** add a new column to the dataset specifying whether the ride is considered short (<5 minutes), medium (5-30 minutes), or long (>30 minutes) (Hint: again use the package `lubridate` to work with days, dates, time and extract duration from in the `started_at` and `ended_at` fields)
+
+- **Number of rides of different lengths by day of the week** plot the number of rides against the day of the week, faceting by ride length class. 
+
+- **Interactions**: Create a table with the starting station, ending station, and the number of rides between each station.   Which starting/ending station pair is traveled between the most?  
+
+- (Awaiting final file) **Rides by neighborhood** write a function that takes as input the starting `neigbhorhood` for a ride, and produces a barplot showing the number of rides starting in each `neighborhood`. The names of the neighborhoods are found in the file `data/XXXX.csv`. You will need to `join` the tables before plotting.
+
