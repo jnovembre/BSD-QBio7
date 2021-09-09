@@ -591,9 +591,9 @@ Chicago's Divvy bike-share system (the light blue bikes you will see around town
 
 - **Ride map** write a function that takes as input a calendar date (YYYY-MM-DD), and draws a map of all the starting points of rides. Mark a point for each occurrence using the starting latitude and longitude `start_lat` and `start_lng`. Set the `alpha` to something like 0.1 to show brighter colors in areas with many occurrences.  Use colour to indicate (Optional: Add a feature that draws a line from the starting location to end location)
 
-- **Busiest hour and day of the week** on which day of the week do most rides to start? On which hour of the day do most rides start? (Extract day of the week from `started_at` using the `wday` function of `lubridate`)
-
 - **Daily usage profile for the month**: Make a bar plot of the number of rides per day across the 31 days of the month. Produce a facet graph that stratifies the results by member type (the `member_casual` field). Also use the `fill` to denote the `rideable_type`.  
+
+- **Busiest hour and day of the week** on which day of the week do most rides to start? On which hour of the day do most rides start? (Extract day of the week from `started_at` using the `wday` function of `lubridate`)  Make a plot of the number of rides per hour of the day, faceted on the day of the week.
 
 - **Ride length classes** add a new column to the dataset specifying whether the ride is considered short (<5 minutes), medium (5-30 minutes), or long (>30 minutes) (Hint: again use the package `lubridate` to work with days, dates, time and extract duration from in the `started_at` and `ended_at` fields)
 
