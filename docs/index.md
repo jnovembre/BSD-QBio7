@@ -115,11 +115,11 @@ Now if you go to the folder you chose in step 5, you'll see the repository!
 
 During the boot camp, the 12 groups of students will compete through 5 programming challenges. Here are the links to the webpages where the groups should post their solutions (one answer per group, please):
 
-* Submit your answer to [Programming Challenge 1 (Basic Programming I)](https://forms.gle/t3Y5V6w49zrJ1bcM6)
-* Submit your answer to [Programming Challenge 2 (Basic Programming II)](https://forms.gle/b1HVbbdPuaGsgNw78)
+* Submit your answer to [Programming Challenge 1 (Basic Programming I)](https://forms.gle/w93jnanysf8L8BXn9)
+* Submit your answer to [Programming Challenge 2 (Basic Programming II)](https://forms.gle/pK13yMf3ac2pcJCh8)
 * Submit your answer for the tutorial on [Defensive Programming]
-* Submit your answer for the tutorial on [Data Visualization](https://forms.gle/S98mQKXgfNDKzwzy9)
-* Submit your answer for the tutorial on [Stats for large data](https://forms.gle/N3ebjMCRq9guHxBr9)
+* Submit your answer for the tutorial on [Data Visualization]
+* Submit your answer for the tutorial on [Stats for large data]
 
 ### Notes
 This material is based upon work supported by the National Science Foundation under Grant Number 1734818
