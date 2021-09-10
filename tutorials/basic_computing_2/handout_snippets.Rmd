@@ -110,7 +110,7 @@ are. In the "popmean" example, our function might look like this:
 # "group_col" is the column giving the population labels, and
 # "mean_col" is the column we will summarize by taking means.
 calculate_pop_means <- function (dat, group_col, mean_col) {
-  grouped_data <- group_by(iris, .data[[group_col]])
+  grouped_data <- group_by(dat, .data[[group_col]])
   summarized_data <- summarize(grouped_data,
                                mean_value = mean(.data[[mean_col]]))
   summarized_data <- as.data.frame(summarized_data)
