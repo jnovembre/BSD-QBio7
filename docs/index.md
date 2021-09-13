@@ -120,7 +120,7 @@ During the boot camp, the 12 groups of students will compete through 5 programmi
 * Sumbit your ansser to [Advanced Programming Challenge](https://forms.gle/QQgAMA88a7Jj9KtG7)
 * Submit your answer for the tutorial on [Defensive Programming]
 * Submit your answer for the tutorial on [Data Visualization]
-* Submit your answer for the tutorial on [Stats for large data]
+* Submit your answer for the tutorial on [Stats for large data](https://forms.gle/DrummMdTUbuCdTsQ9)
 
 ### Notes
 This material is based upon work supported by the National Science Foundation under Grant Number 1734818
