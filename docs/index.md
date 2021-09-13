@@ -118,8 +118,8 @@ During the boot camp, the 12 groups of students will compete through 5 programmi
 * Submit your answer to [Programming Challenge 1 (Basic Programming I)](https://forms.gle/w93jnanysf8L8BXn9)
 * Submit your answer to [Programming Challenge 2 (Basic Programming II)](https://forms.gle/pK13yMf3ac2pcJCh8)
 * Sumbit your ansser to [Advanced Programming Challenge](https://forms.gle/QQgAMA88a7Jj9KtG7)
-* Submit your answer for the tutorial on [Defensive Programming]
-* Submit your answer for the tutorial on [Data Visualization]
+* Submit your answer for the tutorial on [Defensive Programming](https://forms.gle/DGGjcNQA5jFtBtVd7)
+* Submit your answer for the tutorial on [Data Visualization](https://forms.gle/tvTZrn79bC8y7cPb9)
 * Submit your answer for the tutorial on [Stats for large data](https://forms.gle/DrummMdTUbuCdTsQ9)
 
 ### Notes
